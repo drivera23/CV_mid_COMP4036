@@ -1,6 +1,6 @@
 <?php
 
-function GetMaxMin(){
+function GetMaxMinPHP(){
     $numbers = array(5, 6, 8, 11, 16, 18, 26, 27, 29, 30, 31, 33, 34, 61, 70, 75, 79, 89, 90, 92);
     echo "Given the array " + $numbers;
     $maximum = 0;
