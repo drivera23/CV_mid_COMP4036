@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<body>
+
+
+<h1 style="text-align: center;">Diego Rivera Correa's Webpage </h1>
+<h2 style="text-align: center;">Click on the buttons! </h2>
+
+<p style="text-align: center; font-size: large;">
+
+    <?php
+      function GMM(){
+          $numbers = array(5, 6, 8, 11, 16, 18, 26, 27, 29, 30, 31, 33, 34, 61, 70, 75, 79, 89, 90, 92);
+          $maximum = 0;
+          $minimum = 0;
+
+          foreach($numbers as $vals){
+            if($vals < $minimum or $minimum == 0){
+              $minimum = $vals;
+            }
+            if($vals > $maximum or $maximum == 0){
+              $maximum = $vals;
+            }
+          }
+
+          echo $maximum;
+      }
+    ?>
+
+    Find the Max/Min of an array! <br>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <button id="btnSearch" class="btn btn-primary btn-md center-block" Style="width: 100px;" OnClick="GetMinMax()" >JS!</button>
+            <button id="btnClear" class="btn btn-danger btn-md center-block" Style="width: 100px;" OnClick="GMM()" >PHP!</button>
+         </div>
+    </div>
+
+</p>
+
+<p style="text-align: center; font-size: large;">
+
+    Calculate Factorials! <br>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <button id="btnSearch" class="btn btn-primary btn-md center-block" Style="width: 100px;" OnClick="GetFact()" >JS!</button>
+            <button id="btnClear" class="btn btn-danger btn-md center-block" Style="width: 100px;" OnClick="GetMaxMinPHP()" >PHP!</button>
+         </div>
+    </div>
+
+</p>
+
+<p style="text-align: center; font-size: large;">
+
+    See my CV! <br>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <button id="btnSearch" class="btn btn-primary btn-md center-block" Style="width: 100px;" OnClick="GetFact()" > CV </button>
+         </div>
+    </div>
+
+</p>
+
+
+<!-- SCRIPT SECTION -->
+<script type="text/javascript" src="/Users/diego/Documents/COMP4036 Programming Languages/CV_mid_COMP4036/function.js"> </script>
+<!-- SCRIPT SECTION -->
+
+
+
+</body>
+</html>
