@@ -3,8 +3,6 @@
 // Professional title, resume summary, or resume objective
 // Research interests
 // Education
-// Publications (both academic papers and books)
-// Teaching or lecturing experience
 // Work experience                                                        DONE
 // Conferences and courses
 // Skills
@@ -129,28 +127,60 @@ class WorkExperience{
 
 }
 
-// Experience objects
-let setOBJ = new StyleHeader("Experience");
-setOBJ.styleHTML();
+// // Experience objects
+// let setOBJ = new StyleHeader("Experience");
+// setOBJ.styleHTML();
 
-let obj = new WorkExperience("AIG", 2021, "App Development Intern");
-obj.add_task("Optimized data-gathering code using Ruby to examine thousands of server checkpoints and compliance standards");
-obj.add_task("Wrote queries using PostgreSQL to connect multiple relations and further analyze servers and their data fields.");
-obj.add_task("Developed a Power BI dashboard to demonstrate outliers and group/label data for future compliance updates.");
-obj.to_HTML();
+// let obj = new WorkExperience("AIG", 2021, "App Development Intern");
+// obj.add_task("Optimized data-gathering code using Ruby to examine thousands of server checkpoints and compliance standards");
+// obj.add_task("Wrote queries using PostgreSQL to connect multiple relations and further analyze servers and their data fields.");
+// obj.add_task("Developed a Power BI dashboard to demonstrate outliers and group/label data for future compliance updates.");
+// obj.to_HTML();
 
-let obj2 = new WorkExperience("Andeno", 2021, "Data Science Intern");
-obj2.add_task("Worked on historical transaction data using Jupyter Notebooks for user inflow/outflow analytics and visualization.");
-obj2.add_task("Performed multiple statistical tests on gathered data for possible algorithm improvement and outlier detection.");
-obj2.add_task("Coded Python scripts for data labelling, cleaning, and extraction for predictive tendency models for hundreds of users.");
-obj2.add_task("Used Python libraries: Pandas, Matplotlib, CSV, Numpy, Scipy.Stats, and Seaborn.");
-obj2.to_HTML();
+// let obj2 = new WorkExperience("Andeno", 2021, "Data Science Intern");
+// obj2.add_task("Worked on historical transaction data using Jupyter Notebooks for user inflow/outflow analytics and visualization.");
+// obj2.add_task("Performed multiple statistical tests on gathered data for possible algorithm improvement and outlier detection.");
+// obj2.add_task("Coded Python scripts for data labelling, cleaning, and extraction for predictive tendency models for hundreds of users.");
+// obj2.add_task("Used Python libraries: Pandas, Matplotlib, CSV, Numpy, Scipy.Stats, and Seaborn.");
+// obj2.to_HTML();
 
-// Experience objects
+// // Experience objects
+
+// // Skills objects
+
+// let setSkill = new StyleHeader("Skills");
+// setSkill.styleHTML();
 
 // Skills objects
 
-let setSkill = new StyleHeader("Skills");
-setSkill.styleHTML();
+function GetMinMax(){
+  numbers = [5, 6, 8, 11, 16, 18, 26, 27, 29, 30, 31, 33, 34, 61, 70, 75, 79, 89, 90, 92];
+  console.log("Given the array: " + numbers);
+  max = 0;
+  min = 0;
 
-// Skills objects
+  for (i = 0; i < numbers.length; i++){
+    if (numbers[i] < min || min == 0){
+      min = numbers[i];
+    }
+    if (numbers[i] > max || max == 0){
+      max = numbers[i];
+    }
+  } 
+
+  console.log("The max = " + max);
+  console.log("The min = " + min);
+}
+
+function GetFact(){
+  n = 6;
+  console.log(n + " factorial is equal to: " + fact(n));
+}
+
+function fact(n){
+    if (n <= 1){
+        return 1;
+    }
+    return  n * fact(n-1);
+}
+
