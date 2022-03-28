@@ -23,9 +23,9 @@ class StyleHeader{
       tag.style.cssText = "margin-left:25%;";
 
       var line = document.createElement("hr")
-      line.style.cssText = "background-color: #000000; width:55%; height: 10px;";
+      line.style.cssText = "height: 2px; background-color: #000000; border: none; width:55%;";
 
-      var element = document.getElementsByTagName("body")[0];
+      var element = document.getElementById("CV");
       element.appendChild(tag);
       element.appendChild(line);
     }
@@ -70,7 +70,7 @@ class Skills{
     ul.style.cssText = 'margin-left: 25%; margin-right: 25%;';
     tag.appendChild(ul)
 
-    var element = document.getElementsByTagName("body")[0];
+    var element = document.getElementById("CV");
     element.appendChild(tag);
   }
 
@@ -117,7 +117,7 @@ class WorkExperience{
       tag.appendChild(titletagC)
 
       var titletagR = document.createElement("p")
-      titletagR.style.cssText = 'margin-top: 1%; margin-left: 25%;';
+      titletagR.style.cssText = 'margin-top: 1%; margin-left: 25%; font-size:large';
       titletagR.appendChild(document.createTextNode(this.year))
       tag.appendChild(titletagR)
 
@@ -127,7 +127,7 @@ class WorkExperience{
       ul.style.cssText = 'margin-left: 25%; margin-right: 25%;';
       tag.appendChild(ul)
 
-      var element = document.getElementsByTagName("body")[0];
+      var element = document.getElementById("CV");
       element.appendChild(tag);
     }
 
@@ -167,11 +167,14 @@ function fact(n){
 
 function GetCV(){
     document.body.innerHTML = " ";
-    let btn = document.createElement("button");
-    btn.style.cssText = 'margin-top: 5%; margin: auto; display: block';
-    btn.innerHTML = "Download CV!";
-    document.body.appendChild(btn);
-    // // Experience objects
+    let bDiv = document.createElement("button");
+    bDiv.setAttribute("id", "generatePDF")
+    bDiv.style.cssText = 'margin-top: 5%; margin: auto; display: block';
+    bDiv.innerHTML = "Download CV!";
+    let newDiv = document.createElement("div");
+    newDiv.setAttribute("id", "CV");
+    document.body.appendChild(bDiv);
+    document.body.appendChild(newDiv);
     let setOBJ = new StyleHeader("Experience");
     setOBJ.styleHTML();
 
@@ -195,8 +198,12 @@ function GetCV(){
     let setSkill = new StyleHeader("Skills");
     setSkill.styleHTML();
 
+    bDiv.addEventListener("click", generatePDF);
+
     // Skills objects
+}
 
-
-
+function generatePDF() {
+    var element = document.getElementById('CV');
+    html2pdf(element);
 }
