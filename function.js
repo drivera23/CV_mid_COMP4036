@@ -18,7 +18,7 @@ class StyleHeader{
     }
 
     styleHTML(){
-      var tag = document.createElement("h2");
+      var tag = document.createElement("h3");
       tag.appendChild(document.createTextNode(this.section_header))
       tag.style.cssText = "margin-left:25%;";
 
@@ -36,9 +36,85 @@ class StyleHeader{
 
 
 class CV{
+  owner_FN;
+  owner_LN;
+  constructor(FN, LN){
+      this.owner_FN = FN;
+      this.owner_LN = LN;
+  }
+
+  styleHTML(){
+    var tag = document.createElement("h2");
+    tag.appendChild(document.createTextNode(this.owner_FN + " " + this.owner_LN))
+    tag.style.cssText = "text-align: center";
+
+    var element = document.getElementById("CV");
+    element.appendChild(tag);
+  }
 
 }
 
+class Education{
+    name;
+    grad_year;
+    city;
+    state;
+    degree_type;
+    concentration;
+    constructor(name, grad_year, city, state, degree_type, concentration){
+        this.name = name;
+        this.grad_year = grad_year;
+        this.city = city;
+        this.state = state;
+        this.degree_type = degree_type;
+        this.concentration = concentration;
+    }
+
+    to_HTML(){ // se crea el header, date, y objetivos
+      var tag = document.createElement("p");
+
+      var titletagC = document.createElement("h4")
+      titletagC.style.cssText = 'margin-left: 25%;';
+      titletagC.appendChild(document.createTextNode(this.name))
+      tag.appendChild(titletagC)
+
+      var titletagR = document.createElement("p")
+      titletagR.style.cssText = 'margin-top: 1%; margin-left: 25%; font-size:large';
+      titletagR.appendChild(document.createTextNode(this.degree_type + " in " + this.concentration))
+      tag.appendChild(titletagR)
+
+      var element = document.getElementById("CV");
+      element.appendChild(tag);
+
+
+    }
+
+    // to_HTML(){
+    //   var tag = document.createElement("p");
+    //
+    //   var titletagC = document.createElement("h3")
+    //   titletagC.style.cssText = 'margin-left: 25%;';
+    //   titletagC.appendChild(document.createTextNode(this.role + " @ " + this.company ))
+    //   tag.appendChild(titletagC)
+    //
+    //   var titletagR = document.createElement("p")
+    //   titletagR.style.cssText = 'margin-top: 1%; margin-left: 25%;';
+    //   titletagR.appendChild(document.createTextNode(this.year))
+    //   tag.appendChild(titletagR)
+    //
+    //   tag.style.cssText = 'margin-left: 25% width: 50%;';
+    //   var ul = document.createElement("ul");
+    //   this.display_task(ul, 'li');
+    //   ul.style.cssText = 'margin-left: 25%; margin-right: 25%;';
+    //   tag.appendChild(ul)
+    //
+    //   var element = document.getElementById("CV");
+    //   element.appendChild(tag);
+    // }
+
+
+
+}
 
 class Skills{
   type;
@@ -83,6 +159,8 @@ class Language extends Skills{
     }
 }
 
+
+
 class WorkExperience{
     company;
     year;
@@ -113,18 +191,13 @@ class WorkExperience{
 
       var titletagC = document.createElement("h3")
       titletagC.style.cssText = 'margin-left: 25%;';
-      titletagC.appendChild(document.createTextNode(this.role + " @ " + this.company ))
+      titletagC.appendChild(document.createTextNode(this.year + " | " + this.role + " @ " + this.company ))
       tag.appendChild(titletagC)
-
-      var titletagR = document.createElement("p")
-      titletagR.style.cssText = 'margin-top: 1%; margin-left: 25%; font-size:large';
-      titletagR.appendChild(document.createTextNode(this.year))
-      tag.appendChild(titletagR)
 
       tag.style.cssText = 'margin-left: 25% width: 50%;';
       var ul = document.createElement("ul");
       this.display_task(ul, 'li');
-      ul.style.cssText = 'margin-left: 25%; margin-right: 25%;';
+      ul.style.cssText = 'font-size: large; margin-left: 25%; margin-right: 25%;';
       tag.appendChild(ul)
 
       var element = document.getElementById("CV");
@@ -134,47 +207,29 @@ class WorkExperience{
 }
 
 
-function GetMinMax(){
-  numbers = [5, 6, 8, 11, 16, 18, 26, 27, 29, 30, 31, 33, 34, 61, 70, 75, 79, 89, 90, 92];
-  console.log("Given the array: " + numbers);
-  max = 0;
-  min = 0;
-
-  for (i = 0; i < numbers.length; i++){
-    if (numbers[i] < min || min == 0){
-      min = numbers[i];
-    }
-    if (numbers[i] > max || max == 0){
-      max = numbers[i];
-    }
-  }
-
-  console.log("The max = " + max);
-  console.log("The min = " + min);
-}
-
-function GetFact(){
-  n = 6;
-  console.log(n + " factorial is equal to: " + fact(n));
-}
-
-function fact(n){
-    if (n <= 1){
-        return 1;
-    }
-    return  n * fact(n-1);
-}
-
 function GetCV(){
     document.body.innerHTML = " ";
     let bDiv = document.createElement("button");
+    bDiv.setAttribute("class", "btn btn-primary btn-md center-block")
     bDiv.setAttribute("id", "generatePDF")
-    bDiv.style.cssText = 'margin-top: 5%; margin: auto; display: block';
+    bDiv.style.cssText = 'margin-top: 15px; display: block';
     bDiv.innerHTML = "Download CV!";
     let newDiv = document.createElement("div");
     newDiv.setAttribute("id", "CV");
     document.body.appendChild(bDiv);
     document.body.appendChild(newDiv);
+
+
+    let title = new CV("Diego Luis", "Rivera Correa")
+    title.styleHTML();
+
+    let setEd = new StyleHeader("Education");
+    setEd.styleHTML();
+
+    let objEd = new Education("UPR - Mayaguez", "2023", "Mayagüez", "PR", "BS", "Computer Science");
+    objEd.to_HTML();
+
+
     let setOBJ = new StyleHeader("Experience");
     setOBJ.styleHTML();
 
