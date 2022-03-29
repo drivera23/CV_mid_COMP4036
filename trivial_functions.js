@@ -207,3 +207,7 @@ function Get10NN(){
   element = document.getElementById("JS3");
   element.innerHTML = "The sum =  "+ total + "<br> The product = " + prod;
 }
+
+function GMMPHP(){
+  var htmlString="<?php echo $htmlString; ?>";
+}
