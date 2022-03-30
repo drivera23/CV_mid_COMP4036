@@ -4,7 +4,7 @@
 // Research interests                                                     DONE
 // Education                                                              DONE
 // Work experience                                                        DONE
-// Conferences and courses
+// Conferences and courses                                                DONE
 // Skills                                                                 DONE
 // Certificates                                                           DONE
 // Languages                                                              DONE
@@ -363,6 +363,49 @@ class WorkExperience{
 
 }
 
+class Projects{
+  year;
+  title;
+  tasks = [];
+  constructor(year, title) {
+    this.year = year;
+    this.title = title;
+  }
+
+  add_task(task){
+    this.tasks.push(task);
+  }
+
+  display_task(tag, type){
+    for (let i = 0; i < this.tasks.length; i++) {
+        var item = document.createElement(type);
+        item.appendChild(document.createTextNode(this.tasks[i]))
+        tag.appendChild(item)
+    }
+    return;
+  }
+
+  show(){
+    var tag = document.createElement("p");
+
+    var titletagC = document.createElement("h4")
+    titletagC.style.cssText = 'margin-left: 25%;';
+    titletagC.appendChild(document.createTextNode(this.year + " | " + this.title ))
+    tag.appendChild(titletagC)
+
+    tag.style.cssText = 'margin-left: 25% width: 50%;';
+    var ul = document.createElement("ul");
+    this.display_task(ul, 'li');
+    ul.style.cssText = 'font-size: large; margin-left: 25%; margin-right: 25%;';
+    tag.appendChild(ul)
+
+    var element = document.getElementById("CV");
+    element.appendChild(tag);
+  }
+
+
+}
+
 
 function GetCV(){
     document.body.innerHTML = " ";
@@ -400,7 +443,7 @@ function GetCV(){
     objEd.to_HTML();
 
 
-    let setOBJ = new StyleHeader("Experience");
+    let setOBJ = new StyleHeader("Professional Experiences");
     setOBJ.styleHTML();
 
     let obj = new WorkExperience("AIG", 2021, "App Development Intern");
@@ -416,6 +459,25 @@ function GetCV(){
     obj2.add_task("Used Python libraries: Pandas, Matplotlib, CSV, Numpy, Scipy.Stats, and Seaborn.");
     obj2.to_HTML();
 
+    let proB = new StyleHeader("Projects");
+    proB.styleHTML();
+
+    let proj = new Projects(2022, "WhatsApp Chat Data Analysis")
+    proj.add_task("Coding Python scripts using JupyterLab for cleaning and parsing over 160k messages spanning through 3 years into dictionaries with efficient tagging");
+    proj.add_task("Visualizing tendencies on how frequently messages are exchanged in hourly, daily, monthly, and yearly basis.");
+    proj.add_task("Calculated the rate in which users send messages, as well as determining the user with the most messages and their ‘busiest’ message sending intervals.");
+    proj.add_task("Currently researching/testing SKLearn’s DecisionTrees to classify messages and determine when would they be sent.");
+    proj.show();
+
+    let proj2 = new Projects(2021, "The NBA Draft: A Historical-Numerical Approach")
+    proj2.add_task("Developed a Python script that extracts data from around 4k NBA players and their accumulated counting and computed stats.");
+    proj2.add_task("Performed t-tests and f-tests using Python’s stats module to compare if different NBA decade players can translate their statistics across different periods of time.");
+    proj2.add_task("Cleaned and pivoted data with Pandas and prepared a data pipeline to create data animations using Python’s FuncAnimation library.");
+    proj2.add_task("Created a metric that combines all counting and computed stats that determines which NBA draft class is objectively better. According to Bleacher Report’s studies, the results were 83.3% compatible with their results.");
+    proj2.add_task("Documented and kept track of all progress with LaTeX. Project was made as part of the MATE4990 course.");
+    proj2.show();
+
+
     // Experience objects
 
     // Skills objects
@@ -430,7 +492,7 @@ function GetCV(){
     skobj.add_task("PHP");
     skobj.to_HTML();
 
-    let lobj = new Skills("Languages");
+    let lobj = new Language("Languages");
     lobj.add_task("Spanish");
     lobj.add_task("English");
     lobj.to_HTML();
