@@ -1,0 +1,25 @@
+Type,val,val
+Name,Diego Luis Rivera
+Summary,CS Student,"I have experience in different fields of CS, specifically with Statistical Analysis."
+Education
+Professional Experiences,
+Professional Experiences,
+Project,2022,"WhatsApp Chat Data Analysis,Coding Python scripts using JupyterLab for cleaning and parsing over 160k messages spanning through 3 years into dictionaries with efficient tagging","Visualizing tendencies on how frequently messages are exchanged in hourly, daily, monthly, and yearly basis","Calculated the rate in which users send messages, as well as determining the user with the most messages and their ‘busiest’ message sending intervals.","Currently researching/testing SKLearn’s DecisionTrees to classify messages and determine when would they be sent."
+Project,2021,The NBA Draft: A Historical-Numerical Approach,"Developed a Python script that extracts data from around 4k NBA players and their accumulated counting and computed stats.
+","Performed t-tests and f-tests using Python’s stats module to compare if different NBA decade players can translate their statistics across different periods of time.","Cleaned and pivoted data with Pandas and prepared a data pipeline to create data animations using Python’s FuncAnimation library.","Created a metric that combines all counting and computed stats that determines which NBA draft class is objectively better. According to Bleacher Report’s studies, the results were 83.3% compatible with their results.","Documented and kept track of all progress with LaTeX. Project was made as part of the MATE4990 course."
+Skills,Programming,Python,C++,JS,PHP
+Language,Spanish,English
+Skills,Pandas,Numpy,Seaborn,Matplotlib
+Recognition,2022,Georgia Tech Focus Scholar
+Recognition,2021,LinkedIn Certified: Probability and Statistics
+Recognition,2021,LinkedIn Certified: Python for Data Analysis
+Recognition,2020,UPRM Dean’s List
+Recognition,2020,BPPR Power BI and Excel Certification
+Recognition,2019,UPRM IEEE 8th Generation Scholar
+Recognition,2019,US Presidential Award for Academic Excellence
+Course,COMP4017,Algorithms
+Course,COMP4018,Database Systems
+Course,COMP4036,Computer Graphics
+Course,COMP3075,Data Structures
+Course,MATE4031,Linear Algebra
+Course,MATE3031/3032/3063,Calculus I-III

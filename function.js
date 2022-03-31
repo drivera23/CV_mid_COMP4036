@@ -1,13 +1,3 @@
-// Full name                                                              DONE
-// Contact information                                                    DONE
-// Professional title, resume summary, or resume objective                DONE
-// Research interests                                                     DONE
-// Education                                                              DONE
-// Work experience                                                        DONE
-// Conferences and courses                                                DONE
-// Skills                                                                 DONE
-// Certificates                                                           DONE
-// Languages                                                              DONE
 
 class ProfTitle{
     title;
@@ -26,7 +16,7 @@ class ProfTitle{
       let text = "My interests include: ";
       for (let i = 0; i < this.interests.length; i++) {
           if (i == this.interests.length -1){
-            text += this.interests[i]
+            text += "and " + this.interests[i]
           }
           else {
             text += this.interests[i] + ", ";
@@ -154,6 +144,7 @@ class StyleHeader{
     styleHTML(){
       var tag = document.createElement("h3");
       tag.appendChild(document.createTextNode(this.section_header))
+      tag.setAttribute("id", this.section_header);
       tag.style.cssText = "margin-left:25%;";
 
       var line = document.createElement("hr")
@@ -170,16 +161,14 @@ class StyleHeader{
 
 
 class CV{
-  owner_FN;
-  owner_LN;
-  constructor(FN, LN){
-      this.owner_FN = FN;
-      this.owner_LN = LN;
+  name;
+  constructor(FN){
+      this.name = FN;
   }
 
   styleHTML(){
     var tag = document.createElement("h2");
-    tag.appendChild(document.createTextNode(this.owner_FN + " " + this.owner_LN))
+    tag.appendChild(document.createTextNode(this.name))
     tag.style.cssText = "text-align: center";
 
     var element = document.getElementById("CV");
@@ -407,7 +396,7 @@ class Projects{
 }
 
 
-function GetCV(){
+function GetCV(data){
     document.body.innerHTML = " ";
     let bDiv = document.createElement("button");
     bDiv.setAttribute("class", "btn btn-primary btn-md center-block")
@@ -419,122 +408,225 @@ function GetCV(){
     document.body.appendChild(bDiv);
     document.body.appendChild(newDiv);
 
-
-    let title = new CV("Diego Luis", "Rivera Correa");
-    title.styleHTML();
-
-    let contact = new Contact("diego.rivera23@upr.edu", "787-502-0936");
-    contact.toHTML();
-
-    let setSum = new StyleHeader("Summary");
-    setSum.styleHTML();
-
-    let summary = new ProfTitle("CS Student", "I have experience in different fields of CS, specifically with Statistical Analysis.");
-    summary.add_interest("Machine Learning");
-    summary.add_interest("Statistics");
-    summary.add_interest("Sports-Analytics");
-    summary.to_HTML();
+    //ojbects
 
 
-    let setEd = new StyleHeader("Education");
-    setEd.styleHTML();
+    function title(data){
+      let cv = new CV(data[1]);
+      cv.styleHTML();
+    }
 
-    let objEd = new Education("UPR - Mayaguez", "2023", "Mayaguez", "PR", "BS", "Computer Science");
-    objEd.to_HTML();
+    function contact(data){
+      let contact = new Contact(data[1], data[2]);
+      contact.toHTML();
+    }
+
+    function summary(data){
+      var testData = !!document.getElementById(data[0]);
+      if (1 > 0){
+          if (testData == true) {console.log("cool");}
+          else {
+            let title = new StyleHeader(data[0]);
+            title.styleHTML();
+          }
+      }
+      let summ = new ProfTitle(data[1], data[2]);
+      for (var i = 3; i < data.length; i++) {
+          summ.add_interest(data[i]);
+      }
+      summ.to_HTML();
+    }
+
+    function project(data){
+      var testData = !!document.getElementById(data[0]);
+      if (1 > 0){
+          if (testData == true) {console.log("cool");}
+          else {
+            let title = new StyleHeader(data[0]);
+            title.styleHTML();
+          }
+      }
+      let proj = new Projects(data[1], data[2]);
+      for (var i = 3; i < data.length; i++) {
+          proj.add_task(data[i]);
+      }
+      proj.show();
+    }
+
+    function courses(data){
+      var testData = !!document.getElementById(data[0]);
+      if (1 > 0){
+          if (testData == true) {console.log("cool");}
+          else {
+            let title = new StyleHeader(data[0]);
+            title.styleHTML();
+          }
+      }
+      let co = new Courses();
+      co.add_course(data[1], data[2]);
+      co.to_HTML();
+    }
+
+    function skills(data){
+      var testData = !!document.getElementById(data[0]);
+      if (1 > 0){
+          if (testData == true) {console.log("cool");}
+          else {
+            let title = new StyleHeader(data[0]);
+            title.styleHTML();
+          }
+      }
+      let skobj = new Skills(data[1]);
+      for (var i = 2; i < data.length; i++) {
+          skobj.add_task(data[i]);
+      }
+      skobj.to_HTML();
+    }
+
+    function recog(data){
+      var testData = !!document.getElementById(data[0]);
+      if (1 > 0){
+          if (testData == true) {console.log("cool");}
+          else {
+            let title = new StyleHeader(data[0]);
+            title.styleHTML();
+          }
+      }
+      let rec = new Recognition();
+      rec.add_task(data[2], data[1]);
+      rec.to_HTML();
+    }
+
+    function workex(data){
+      var testData = !!document.getElementById(data[0]);
+      if (1 > 0){
+          if (testData == true) {console.log("cool");}
+          else {
+            let title = new StyleHeader(data[0]);
+            title.styleHTML();
+          }
+      }
+      let obj = new WorkExperience(data[1], data[2], data[3]);
+      for (var i = 4; i < data.length; i++) {
+          obj.add_task(data[i]);
+      }
+      obj.to_HTML();
+    }
+
+    function education(data){
+      var testData = !!document.getElementById(data[0]);
+      if (1 > 0){
+          if (testData == true) {console.log("cool");}
+          else {
+            let title = new StyleHeader(data[0]);
+            title.styleHTML();
+          }
+      }
+      let objEd = new Education(data[1], data[2], data[3], data[4], data[5], data[6]);
+      objEd.to_HTML();
+    }
+    // automate
+    // title
+    // contact info
+    // Summary
+    // Education
+    // Work
+    // Projects
+    // skills
+    // Recognition
+    // Courses
+
+    for (var i = 0; i < data.length; i++) {
+          if (data[i].length == 1) {
+              continue;
+          }
+          else {
+              if (data[i][0] == "Name") {
+                  title(data[i]);
+              }
+              if (data[i][0] == "Contact") {
+                  contact(data[i]);
+              }
+              if (data[i][0] == "Summary") {
+                  summary(data[i]);
+              }
+              if (data[i][0] == "Education") {
+                  education(data[i]);
+              }
+              if (data[i][0] == "Professional Experiences") {
+                  workex(data[i]);
+              }
+              if (data[i][0] == "Projects") {
+                  project(data[i]);
+              }
+              if (data[i][0] == "Skills") {
+                  skills(data[i]);
+              }
+              if (data[i][0] == "Recognitions") {
+                  recog(data[i]);
+              }
+              if (data[i][0] == "Courses") {
+                  courses(data[i]);
+              }
+          }
+    }
 
 
-    let setOBJ = new StyleHeader("Professional Experiences");
-    setOBJ.styleHTML();
 
-    let obj = new WorkExperience("AIG", 2021, "App Development Intern");
-    obj.add_task("Optimized data-gathering code using Ruby to examine thousands of server checkpoints and compliance standards");
-    obj.add_task("Wrote queries using PostgreSQL to connect multiple relations and further analyze servers and their data fields.");
-    obj.add_task("Developed a Power BI dashboard to demonstrate outliers and group/label data for future compliance updates.");
-    obj.to_HTML();
+     bDiv.addEventListener("click", generatePDF);
 
-    let obj2 = new WorkExperience("Andeno", 2021, "Data Science Intern");
-    obj2.add_task("Worked on historical transaction data using Jupyter Notebooks for user inflow/outflow analytics and visualization.");
-    obj2.add_task("Performed multiple statistical tests on gathered data for possible algorithm improvement and outlier detection.");
-    obj2.add_task("Coded Python scripts for data labelling, cleaning, and extraction for predictive tendency models for hundreds of users.");
-    obj2.add_task("Used Python libraries: Pandas, Matplotlib, CSV, Numpy, Scipy.Stats, and Seaborn.");
-    obj2.to_HTML();
+    //
+    // let setEd = new StyleHeader("Education");
+    // setEd.styleHTML();
+    //
+    // let objEd = new Education("UPR - Mayaguez", "2023", "Mayaguez", "PR", "BS", "Computer Science");
+    // objEd.to_HTML();
+    //
 
-    let proB = new StyleHeader("Projects");
-    proB.styleHTML();
-
-    let proj = new Projects(2022, "WhatsApp Chat Data Analysis")
-    proj.add_task("Coding Python scripts using JupyterLab for cleaning and parsing over 160k messages spanning through 3 years into dictionaries with efficient tagging");
-    proj.add_task("Visualizing tendencies on how frequently messages are exchanged in hourly, daily, monthly, and yearly basis.");
-    proj.add_task("Calculated the rate in which users send messages, as well as determining the user with the most messages and their ‘busiest’ message sending intervals.");
-    proj.add_task("Currently researching/testing SKLearn’s DecisionTrees to classify messages and determine when would they be sent.");
-    proj.show();
-
-    let proj2 = new Projects(2021, "The NBA Draft: A Historical-Numerical Approach")
-    proj2.add_task("Developed a Python script that extracts data from around 4k NBA players and their accumulated counting and computed stats.");
-    proj2.add_task("Performed t-tests and f-tests using Python’s stats module to compare if different NBA decade players can translate their statistics across different periods of time.");
-    proj2.add_task("Cleaned and pivoted data with Pandas and prepared a data pipeline to create data animations using Python’s FuncAnimation library.");
-    proj2.add_task("Created a metric that combines all counting and computed stats that determines which NBA draft class is objectively better. According to Bleacher Report’s studies, the results were 83.3% compatible with their results.");
-    proj2.add_task("Documented and kept track of all progress with LaTeX. Project was made as part of the MATE4990 course.");
-    proj2.show();
-
-
-    // Experience objects
-
-    // Skills objects
-
-    let setSkill = new StyleHeader("Skills");
-    setSkill.styleHTML();
-
-    let skobj = new Skills("Programming");
-    skobj.add_task("Python");
-    skobj.add_task("C++");
-    skobj.add_task("JS");
-    skobj.add_task("PHP");
-    skobj.to_HTML();
-
-    let lobj = new Language("Languages");
-    lobj.add_task("Spanish");
-    lobj.add_task("English");
-    lobj.to_HTML();
-
-    // Pandas, Numpy, Seaborn, Matplotlib, Scipy.Stats, OS, CSV, SKLearn
-    let dobj = new Skills("Data Analysis Tools");
-    dobj.add_task("Pandas");
-    dobj.add_task("Numpy");
-    dobj.add_task("Seaborn");
-    dobj.add_task("Matplotlib");
-    dobj.to_HTML();
-
-
-    let setRec = new StyleHeader("Recognitions");
-    setRec.styleHTML();
-    let rec = new Recognition();
-    rec.add_task("Georgia Tech Focus Scholar", 2022);
-    rec.add_task("LinkedIn Certified: Probability and Statistics", 2021);
-    rec.add_task("LinkedIn Certified: Python for Data Analysis", 2021);
-    rec.add_task("UPRM Dean’s List", 2020);
-    rec.add_task("BPPR Power BI and Excel Certification", 2020)
-    rec.add_task("UPRM IEEE 8th Generation Scholar", 2019);
-    rec.add_task("US Presidential Award for Academic Excellence", 2019);
-    rec.to_HTML();
-
-    let setCo = new StyleHeader("Courses");
-    setCo.styleHTML();
-    let co = new Courses();
-    co.add_course("COMP4017", "Algorithms");
-    co.add_course("COMP4018", "Database Systems");
-    co.add_course("COMP4036", "Computer Graphics");
-    co.add_course("COMP3075", "Data Structures");
-    co.add_course("MATE4031", "Linear Algebra");
-    co.add_course("MATE3031/3032/3063", "Calculus I-III");
-    co.to_HTML();
-
-    bDiv.addEventListener("click", generatePDF);
-
-    // Skills objects
 }
 
 function generatePDF() {
     var element = document.getElementById('CV');
     html2pdf(element);
+}
+
+
+function st(dara){
+    for (let i = 0; i < data.length; i++){
+      for (var j = 0; j < data[i].length; j++) {
+          data[i][j] = data[i][j].replace(/['"]+/g, '');
+      }
+        // console.log(data[i]);
+        //     clean data
+    }
+    console.log("Got it!");
+    data = [
+      ['Name', 'Diego Luis Rivera'],
+      ['Contact', 'diego.rivera23@upr.edu', '787-502-0936'],
+      ['Summary', 'CS Student', '"I have experience in different fields of CS, specifically with Statistical Analysis."', "ML", "Statistics", "Cognitive Sciences"],
+      ['Projects', '2022', 'WhatsApp Chat Data Analysis',"Coding Python scripts…3 years into dictionaries with efficient tagging", '"Visualizing tendencies on how frequently messages…nged in hourly, daily, monthly, and yearly basis"', '"Calculated the rate in which users send messages,…s and their ‘busiest’ message sending intervals."', '"Currently researching/testing SKLearn’s DecisionT… messages and determine when would they be sent."'],
+      ['Projects', '2021', 'The NBA Draft: A Historical-Numerical Approach', '"Developed a Python script that extracts data from…d their accumulated counting and computed stats."', '"Performed t-tests and f-tests using Python’s stat…eir statistics across different periods of time."', '"Cleaned and pivoted data with Pandas and prepared…animations using Python’s FuncAnimation library."', '"Created a metric that combines all counting and c…esults were 83.3% compatible with their results."', '"Documented and kept track of all progress with La…Project was made as part of the MATE4990 course."'],
+      ['Skills', 'Programming', 'Python', 'C++', 'JS', 'PHP'],
+      ['Skills', 'Languages','Spanish', 'English'],
+      ['Skills', 'Data Analysis Libaries','Pandas', 'Numpy', 'Seaborn', 'Matplotlib'],
+      ['Recognitions', '2022', 'Georgia Tech Focus Scholar'],
+      ['Recognitions', '2021', 'LinkedIn Certified: Probability and Statistics'],
+      ['Recognitions', '2021', 'LinkedIn Certified: Python for Data Analysis'],
+      ['Recognitions', '2020', 'UPRM Dean’s List'],
+      ['Recognitions', '2020', 'BPPR Power BI and Excel Certification'],
+      ['Recognitions', '2019', 'UPRM IEEE 8th Generation Scholar'],
+      ['Recognitions', '2019', 'US Presidential Award for Academic Excellence'],
+      ['Courses', 'COMP4017', 'Algorithms'],
+      ['Courses', 'COMP4018', 'Database Systems'],
+      ['Courses', 'COMP4036', 'Computer Graphics'],
+      ['Courses', 'COMP3075', 'Data Structures'],
+      ['Courses', 'MATE4031', 'Linear Algebra'],
+      ['Courses', 'MATE3031/3032/3063', 'Calculus I-III']
+
+    ]
+
+
+
+      GetCV(data);
+
 }
