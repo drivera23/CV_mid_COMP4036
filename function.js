@@ -8,9 +8,7 @@ class ProfTitle{
         this.objective = obj;
     }
 
-    add_interest(inte){
-      this.interests.push(inte);
-    }
+    add_interest(inte){this.interests.push(inte);}
 
     display_interest(tag){
       let text = "My interests include: ";
@@ -27,7 +25,6 @@ class ProfTitle{
     }
 
     to_HTML(){
-
       var tag = document.createElement("p");
 
       var c = document.createElement("p");
@@ -35,31 +32,33 @@ class ProfTitle{
       c.style.cssText = 'font-size: large; margin-left: 25%; margin-right: 25%;';
       tag.appendChild(c);
       //tag.style.cssText = 'margin-left: 25% width: 50%;';
+
       var pi = document.createElement("p");
       this.display_interest(pi);
       pi.style.cssText = 'font-size: large; margin-left: 25%; margin-right: 25%;';
       tag.appendChild(pi);
       tag.style.cssText = 'margin-left: 25% width: 50%;';
 
+      tag.setAttribute("name", "Summary");
+
       var element = document.getElementById("CV");
       element.appendChild(tag);
     }
-
 }
 
 class Recognition{
-  task = [];
+  recog = [];
   years = [];
 
-  add_task(task, rec){
-    this.task.push(task);
-    this.years.push(rec);
+  add_task(recog, year){
+    this.recog.push(recog);
+    this.years.push(year);
   }
 
   display_task(tag, type){
-    for (let i = 0; i < this.task.length; i++) {
+    for (let i = 0; i < this.recog.length; i++) {
         var item = document.createElement(type);
-        item.appendChild(document.createTextNode(this.years[i] + " | " + this.task[i]))
+        item.appendChild(document.createTextNode(this.years[i] + " | " + this.recog[i]))
         tag.appendChild(item)
     }
     return;
@@ -73,6 +72,8 @@ class Recognition{
     this.display_task(ul, 'li');
     ul.style.cssText = 'font-size: large; margin-left: 25%; margin-right: 25%;';
     tag.appendChild(ul);
+
+    tag.setAttribute("name", "Recognitions");
 
     var element = document.getElementById("CV");
     element.appendChild(tag);
@@ -93,7 +94,7 @@ class Courses{
   display_task(tag, type){
     for (let i = 0; i < this.courses.length; i++) {
         var item = document.createElement(type);
-        item.appendChild(document.createTextNode(this.coursecode[i] + " : " + this.courses[i]))
+        item.appendChild(document.createTextNode(this.coursecode[i] + ": " + this.courses[i]))
         tag.appendChild(item)
     }
     return;
@@ -108,10 +109,11 @@ class Courses{
     ul.style.cssText = 'font-size: large; margin-left: 25%; margin-right: 25%;';
     tag.appendChild(ul);
 
+    tag.setAttribute("name", "Courses");
+
     var element = document.getElementById("CV");
     element.appendChild(tag);
   }
-
 
 }
 
@@ -122,7 +124,7 @@ class Contact{
     this.number = num;
   }
 
-  toHTML(){
+  to_HTML(){
     var tag = document.createElement("h4");
     tag.appendChild(document.createTextNode(this.email + " | " + this.number))
     tag.style.cssText = "text-align:center;";
@@ -130,35 +132,44 @@ class Contact{
     var element = document.getElementById("CV");
     element.appendChild(tag);
   }
-
-
 }
 
-
 class StyleHeader{
+
     section_header;
     constructor(section){
       this.section_header = section;
     }
 
-    styleHTML(){
+    to_HTML(){
+
+      var div = document.createElement("p");
       var tag = document.createElement("h3");
       tag.appendChild(document.createTextNode(this.section_header))
       tag.setAttribute("id", this.section_header);
       tag.style.cssText = "margin-left:25%;";
 
+      // let resDiv = document.createElement("button");
+      // resDiv.setAttribute("class", "btn btn-danger btn-md center-block")
+      // resDiv.setAttribute("id", "generatePDF")
+      // resDiv.style.cssText = 'margin-left:20%;';
+      // resDiv.innerHTML = "Add to Resume!";
+
+      //tag.appendChild(resDiv)
+
+
       var line = document.createElement("hr")
       line.style.cssText = "height: 2px; background-color: #000000; border: none; width:55%;";
 
+      div.appendChild(tag);
+      div.appendChild(line);
+
+      div.setAttribute("name", this.section_header);
+
       var element = document.getElementById("CV");
-      element.appendChild(tag);
-      element.appendChild(line);
+      element.appendChild(div);
     }
-
 }
-
-
-
 
 class CV{
   name;
@@ -166,7 +177,7 @@ class CV{
       this.name = FN;
   }
 
-  styleHTML(){
+  to_HTML(){
     var tag = document.createElement("h2");
     tag.appendChild(document.createTextNode(this.name))
     tag.style.cssText = "text-align: center";
@@ -185,36 +196,14 @@ class Education{
     degree_type;
     GPA;
     concentration;
-    courses = [];
-    constructor(name, grad_year, city, state, degree_type, concentration){
+    constructor(name, grad_year, city, state, degree_type, concentration, GPA){
         this.name = name;
         this.grad_year = grad_year;
         this.city = city;
         this.state = state;
         this.degree_type = degree_type;
         this.concentration = concentration;
-    }
-
-    to_HTML(){ // se crea el header, date, y objetivos
-
-
-      var titletagR = document.createElement("p")
-      titletagR.style.cssText = 'margin-top: 1%; margin-left: 25%; font-size:large';
-      titletagR.appendChild(document.createTextNode(this.degree_type + " in " + this.concentration))
-      tag.appendChild(titletagR)
-
-      var element = document.getElementById("CV");
-      element.appendChild(tag);
-
-
-    }
-
-    addCourses(course){
-        this.courses.append(course);
-    }
-
-    addGPA(GPA){
-        this.GPA.append(GPA);
+        this.GPA = GPA;
     }
 
     to_HTML(){
@@ -230,11 +219,13 @@ class Education{
       titletagR.appendChild(document.createTextNode(this.degree_type + " in " + this.concentration))
       tag.appendChild(titletagR);
 
+      var titletagE = document.createElement("p")
+      titletagE.style.cssText = 'margin-top: 1%; margin-left: 25%; font-size:large';
+      titletagE.appendChild(document.createTextNode("GPA: " + this.GPA + "/4.00"))
+      tag.appendChild(titletagE);
+
       tag.style.cssText = 'margin-left: 25% width: 50%;';
-      // var ul = document.createElement("ul");
-      // this.display_task(ul, 'li');
-      // ul.style.cssText = 'margin-left: 25%; margin-right: 25%;';
-      // tag.appendChild(ul)
+      tag.setAttribute("name", "Education");
 
       var element = document.getElementById("CV");
       element.appendChild(tag);
@@ -248,13 +239,9 @@ class Education{
 class Skills{
   type;
   skills = []
-  constructor(type){
-    this.type = type;
-  }
+  constructor(type){this.type = type;}
 
-  add_task(task){
-    this.skills.push(task);
-  }
+  add_task(task){this.skills.push(task);}
 
   display_task(tag, type){
     let text = "";
@@ -291,6 +278,8 @@ class Skills{
     ul.style.cssText = 'font-size: large; margin-left: 25%; margin-right: 25%;';
     tag.appendChild(ul);
 
+    tag.setAttribute("name", "Skills");
+
     var element = document.getElementById("CV");
     element.appendChild(tag);
   }
@@ -319,9 +308,7 @@ class WorkExperience{
         this.role = role;
     }
 
-    add_task(task){
-      this.tasks.push(task);
-    }
+    add_task(task){this.tasks.push(task);}
 
     display_task(tag, type){
       for (let i = 0; i < this.tasks.length; i++) {
@@ -361,9 +348,7 @@ class Projects{
     this.title = title;
   }
 
-  add_task(task){
-    this.tasks.push(task);
-  }
+  add_task(task){this.tasks.push(task);}
 
   display_task(tag, type){
     for (let i = 0; i < this.tasks.length; i++) {
@@ -374,7 +359,7 @@ class Projects{
     return;
   }
 
-  show(){
+  to_HTML(){
     var tag = document.createElement("p");
 
     var titletagC = document.createElement("h4")
@@ -388,6 +373,8 @@ class Projects{
     ul.style.cssText = 'font-size: large; margin-left: 25%; margin-right: 25%;';
     tag.appendChild(ul)
 
+    tag.setAttribute("name","Projects")
+
     var element = document.getElementById("CV");
     element.appendChild(tag);
   }
@@ -395,195 +382,195 @@ class Projects{
 
 }
 
+class CurVi{
 
-function GetCV(data){
-    document.body.innerHTML = " ";
-    let bDiv = document.createElement("button");
-    bDiv.setAttribute("class", "btn btn-primary btn-md center-block")
-    bDiv.setAttribute("id", "generatePDF")
-    bDiv.style.cssText = 'margin-top: 15px; display: block';
-    bDiv.innerHTML = "Download CV!";
-    let newDiv = document.createElement("div");
-    newDiv.setAttribute("id", "CV");
-    document.body.appendChild(bDiv);
-    document.body.appendChild(newDiv);
+    dict_headers = {"Name": 1,"Contact": 1,"Summary": 1,"Education":1
+    ,"Professional Experiences": 1,"Projects": 1,"Skills":1,"Recognitions":1
+    ,"Courses":1}
+    dict_vals = {"Name": [],"Contact": [],"Summary": [],"Education": []
+    ,"Professional Experiences": [],"Projects": [],"Skills":[],"Recognitions":[]
+    ,"Courses":[]}
 
-    //ojbects
+    data;
 
-
-    function title(data){
-      let cv = new CV(data[1]);
-      cv.styleHTML();
-    }
-
-    function contact(data){
-      let contact = new Contact(data[1], data[2]);
-      contact.toHTML();
-    }
-
-    function summary(data){
-      var testData = !!document.getElementById(data[0]);
+    setHeader(data){
+      var testData = this.dict_headers[data[0]];
       if (1 > 0){
-          if (testData == true) {console.log("cool");}
+          if (testData != 1) {console.log("cool");}
           else {
             let title = new StyleHeader(data[0]);
-            title.styleHTML();
+            //title.to_HTML();
+            this.dict_headers[data[0]] = title;
           }
       }
+    }
+
+    constructor(data){this.data = data;}
+
+    title(data){
+      let cv = new CV(data[1]);
+      this.dict_headers[data[0]] = cv;
+    }
+
+    contact(data){
+      let contact = new Contact(data[1], data[2]);
+      this.dict_headers[data[0]] = contact;
+    }
+
+    summary(data){
+      this.setHeader(data);
       let summ = new ProfTitle(data[1], data[2]);
       for (var i = 3; i < data.length; i++) {
           summ.add_interest(data[i]);
       }
-      summ.to_HTML();
+      this.dict_vals[data[0]].push(summ);
     }
 
-    function project(data){
-      var testData = !!document.getElementById(data[0]);
-      if (1 > 0){
-          if (testData == true) {console.log("cool");}
-          else {
-            let title = new StyleHeader(data[0]);
-            title.styleHTML();
-          }
-      }
+    project(data){
+      this.setHeader(data);
       let proj = new Projects(data[1], data[2]);
       for (var i = 3; i < data.length; i++) {
           proj.add_task(data[i]);
       }
-      proj.show();
+      this.dict_vals[data[0]].push(proj);
     }
 
-    function courses(data){
-      var testData = !!document.getElementById(data[0]);
-      if (1 > 0){
-          if (testData == true) {console.log("cool");}
-          else {
-            let title = new StyleHeader(data[0]);
-            title.styleHTML();
-          }
-      }
+    courses(data){
+      this.setHeader(data);
       let co = new Courses();
       co.add_course(data[1], data[2]);
-      co.to_HTML();
+      this.dict_vals[data[0]].push(co);
     }
-
-    function skills(data){
-      var testData = !!document.getElementById(data[0]);
-      if (1 > 0){
-          if (testData == true) {console.log("cool");}
-          else {
-            let title = new StyleHeader(data[0]);
-            title.styleHTML();
-          }
-      }
+    //
+    skills(data){
+      this.setHeader(data);
       let skobj = new Skills(data[1]);
       for (var i = 2; i < data.length; i++) {
           skobj.add_task(data[i]);
       }
-      skobj.to_HTML();
+      this.dict_vals[data[0]].push(skobj);
     }
-
-    function recog(data){
-      var testData = !!document.getElementById(data[0]);
-      if (1 > 0){
-          if (testData == true) {console.log("cool");}
-          else {
-            let title = new StyleHeader(data[0]);
-            title.styleHTML();
-          }
-      }
+    //
+    recog(data){
+      this.setHeader(data);
       let rec = new Recognition();
       rec.add_task(data[2], data[1]);
-      rec.to_HTML();
+      this.dict_vals[data[0]].push(rec);
     }
-
-    function workex(data){
-      var testData = !!document.getElementById(data[0]);
-      if (1 > 0){
-          if (testData == true) {console.log("cool");}
-          else {
-            let title = new StyleHeader(data[0]);
-            title.styleHTML();
-          }
-      }
+    //
+    workex(data){
+      this.setHeader(data);
       let obj = new WorkExperience(data[1], data[2], data[3]);
       for (var i = 4; i < data.length; i++) {
           obj.add_task(data[i]);
       }
-      obj.to_HTML();
+      this.dict_vals[data[0]].push(obj);
+    }
+    //
+    education(data){
+      this.setHeader(data);
+      let objEd = new Education(data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
+      //objEd.to_HTML();
+      this.dict_vals[data[0]].push(objEd);
     }
 
-    function education(data){
-      var testData = !!document.getElementById(data[0]);
-      if (1 > 0){
-          if (testData == true) {console.log("cool");}
-          else {
-            let title = new StyleHeader(data[0]);
-            title.styleHTML();
+    addCV(){
+        for (var i = 0; i < this.data.length; i++) {
+              if (this.data[i].length == 1) {
+                  continue;
+              }
+              else {
+                  if (this.data[i][0] == "Name") {
+                      this.title(this.data[i]);
+                  }
+                  if (this.data[i][0] == "Contact") {
+                      this.contact(this.data[i]);
+                  }
+                  if (this.data[i][0] == "Summary") {
+                      this.summary(this.data[i]);
+                  }
+                  if (this.data[i][0] == "Education") {
+                      this.education(this.data[i]);
+                  }
+                  if (this.data[i][0] == "Professional Experiences") {
+                      this.workex(this.data[i]);
+                  }
+                  if (this.data[i][0] == "Projects") {
+                      this.project(this.data[i]);
+                  }
+                  if (this.data[i][0] == "Skills") {
+                      this.skills(this.data[i]);
+                  }
+                  if (this.data[i][0] == "Recognitions") {
+                      this.recog(this.data[i]);
+                  }
+                  if (this.data[i][0] == "Courses") {
+                      this.courses(this.data[i]);
+                  }
+                }
+            }
+
+    }
+
+    displayCV(){
+      document.body.innerHTML = " ";
+      let cvDiv = document.createElement("button");
+      cvDiv.setAttribute("class", "btn btn-primary btn-md center-block")
+      cvDiv.setAttribute("id", "generatePDF")
+      cvDiv.style.cssText = 'margin-top: 15px; display: block';
+      cvDiv.innerHTML = "Download CV!";
+      //
+      let resDiv = document.createElement("button");
+      resDiv.setAttribute("class", "btn btn-danger btn-md center-block")
+      resDiv.setAttribute("id", "generatePDF")
+      resDiv.style.cssText = 'margin-top: 15px; display: block';
+      resDiv.innerHTML = "See Resume! (Click on Section Header to add it to the Resume!)";
+
+      let newDiv = document.createElement("div");
+      newDiv.setAttribute("id", "CV");
+      document.body.appendChild(cvDiv);
+      document.body.appendChild(resDiv);
+      document.body.appendChild(newDiv);
+
+      for (var key in this.dict_headers) {
+          var objHeader = this.dict_headers[key];
+          if (objHeader == 1){
+            continue;
+          }
+          else{
+              objHeader.to_HTML()
+              for (var i = 0; i < this.dict_vals[key].length; i++) {
+                  var objCont = this.dict_vals[key][i];
+                  objCont.to_HTML();
+              }
           }
       }
-      let objEd = new Education(data[1], data[2], data[3], data[4], data[5], data[6]);
-      objEd.to_HTML();
+       cvDiv.addEventListener("click", generatePDF);
     }
-    // automate
-    // title
-    // contact info
-    // Summary
-    // Education
-    // Work
-    // Projects
-    // skills
-    // Recognition
-    // Courses
+}
 
-    for (var i = 0; i < data.length; i++) {
-          if (data[i].length == 1) {
-              continue;
-          }
-          else {
-              if (data[i][0] == "Name") {
-                  title(data[i]);
-              }
-              if (data[i][0] == "Contact") {
-                  contact(data[i]);
-              }
-              if (data[i][0] == "Summary") {
-                  summary(data[i]);
-              }
-              if (data[i][0] == "Education") {
-                  education(data[i]);
-              }
-              if (data[i][0] == "Professional Experiences") {
-                  workex(data[i]);
-              }
-              if (data[i][0] == "Projects") {
-                  project(data[i]);
-              }
-              if (data[i][0] == "Skills") {
-                  skills(data[i]);
-              }
-              if (data[i][0] == "Recognitions") {
-                  recog(data[i]);
-              }
-              if (data[i][0] == "Courses") {
-                  courses(data[i]);
-              }
-          }
-    }
-
-
-
-     bDiv.addEventListener("click", generatePDF);
-
-    //
-    // let setEd = new StyleHeader("Education");
-    // setEd.styleHTML();
-    //
-    // let objEd = new Education("UPR - Mayaguez", "2023", "Mayaguez", "PR", "BS", "Computer Science");
-    // objEd.to_HTML();
-    //
+function ObjCollect(){
 
 }
+
+class Resume {
+
+  content = [];
+  fillRes(content){this.content.push(content);}
+
+  display(){
+      for (var i = 0; i < this.content.length; i++) {
+          document.appendChild(this.content[i]);
+      }
+  }
+
+}
+
+function fillRes(resume, content){
+
+}
+
+
 
 function generatePDF() {
     var element = document.getElementById('CV');
@@ -591,23 +578,24 @@ function generatePDF() {
 }
 
 
-function st(dara){
-    for (let i = 0; i < data.length; i++){
-      for (var j = 0; j < data[i].length; j++) {
-          data[i][j] = data[i][j].replace(/['"]+/g, '');
-      }
-        // console.log(data[i]);
-        //     clean data
-    }
+function st(){
+    // for (let i = 0; i < data.length; i++){
+    //   for (var j = 0; j < data[i].length; j++) {
+    //       data[i][j] = data[i][j].replace(/['"]+/g, '');
+    //   }
+    //     // console.log(data[i]);
+    //     //     clean data
+    // }
     console.log("Got it!");
     data = [
-      ['Name', 'Diego Luis Rivera'],
+      ['Name', 'Diego Luis Rivera Correa'],
       ['Contact', 'diego.rivera23@upr.edu', '787-502-0936'],
       ['Summary', 'CS Student', '"I have experience in different fields of CS, specifically with Statistical Analysis."', "ML", "Statistics", "Cognitive Sciences"],
+      ['Education', 'UPRM', '2023', "Mayaguez", "PR", "Bachelor of Science","Computer Science","3.87"],
       ['Projects', '2022', 'WhatsApp Chat Data Analysis',"Coding Python scripts…3 years into dictionaries with efficient tagging", '"Visualizing tendencies on how frequently messages…nged in hourly, daily, monthly, and yearly basis"', '"Calculated the rate in which users send messages,…s and their ‘busiest’ message sending intervals."', '"Currently researching/testing SKLearn’s DecisionT… messages and determine when would they be sent."'],
       ['Projects', '2021', 'The NBA Draft: A Historical-Numerical Approach', '"Developed a Python script that extracts data from…d their accumulated counting and computed stats."', '"Performed t-tests and f-tests using Python’s stat…eir statistics across different periods of time."', '"Cleaned and pivoted data with Pandas and prepared…animations using Python’s FuncAnimation library."', '"Created a metric that combines all counting and c…esults were 83.3% compatible with their results."', '"Documented and kept track of all progress with La…Project was made as part of the MATE4990 course."'],
       ['Skills', 'Programming', 'Python', 'C++', 'JS', 'PHP'],
-      ['Skills', 'Languages','Spanish', 'English'],
+      ['Languages','Spanish', 'English'],
       ['Skills', 'Data Analysis Libaries','Pandas', 'Numpy', 'Seaborn', 'Matplotlib'],
       ['Recognitions', '2022', 'Georgia Tech Focus Scholar'],
       ['Recognitions', '2021', 'LinkedIn Certified: Probability and Statistics'],
@@ -624,9 +612,32 @@ function st(dara){
       ['Courses', 'MATE3031/3032/3063', 'Calculus I-III']
 
     ]
+      cv = new CurVi(data);
+      cv.addCV();
+      cv.displayCV();
+
+}
+
+function rescont(){
+    document.body.innerHTML = " ";
+    let cvDiv = document.createElement("button");
+    cvDiv.setAttribute("class", "btn btn-primary btn-md center-block")
+    cvDiv.setAttribute("id", "generatePDF")
+    cvDiv.style.cssText = 'margin-top: 15px; display: block';
+    cvDiv.innerHTML = "Download Resume!";
 
 
+    let newDiv = document.createElement("div");
+    newDiv.setAttribute("id", "Resume");
+    document.body.appendChild(cvDiv);
+    //document.body.appendChild(resDiv);
+    document.body.appendChild(newDiv);
 
-      GetCV(data);
+    y = document.getElementById("Resume")
+    arr = document.getElementsByName("Education");
+    for (var i = 0; i < arr.length; i++) {
+       y.appendChild(arr[i]);
+    }
+
 
 }
