@@ -14,4 +14,16 @@ cvres.html, cuyo proposito es recibir la información de function.js y demostrar
 usuario el CV.
 
 
-Lo siguiente es el dato de entradas al CV llamado cv.csv: Cada
+Lo siguiente es el dato de entradas al CV llamado cv.csv: Cada clase del CV tiene su
+formato de input. Pero cada fila tiene algo en comun. El primer valor es la categoria,
+asi el CV sabe como limpiar cada dato. Ahora ilustrare el formato para todos.
+
+- Title = [Name, name]
+- Contact = [Contact, Email, Phone #]
+- Summary = [Summary, title (i.e. Student, Dev, etc.), Quick intro about yourself]
+- Education = [Education, CollegeName, GradYear, City, State/Country, DegreeType, Concentration, GPA]
+- Professional Experiences = [Professional Experiences, Company, Year, Title, tasks] (it can be multiple tasks)
+- Projects = [Projects, Year, Title, Tasks] (it can be multiple tasks)
+- Skills = [Skills, SkillType (ie Programming, Laguage, etc), SkillName] (it can be multiple SkillNames)
+- Recognitions = [Recognitions, YearGiven, RecognitionName]
+- Courses = [Courses, CourseCode, CourseName]
