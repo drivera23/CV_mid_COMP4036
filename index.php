@@ -1,3 +1,6 @@
+<!--Documento principal del proyecto, contiene el framework bonito de Bootstrap
+y los dos botones que guian el flujo del programa -->
+
 <!DOCTYPE html>
 <html>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -8,9 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.1/html2pdf.bundle.min.js"
      integrity= "sha512-vDKWohFHe2vkVWXHp3tKvIxxXg0pJxeid5eo+UjdjME3DBFBn2F8yWOE0XmiFcFbXxrEOR1JriWEno5Ckpn15A=="
      crossorigin="anonymous"> </script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js"></script>
 
-
+<!--Titulo y estilismo basico -->
 <head>
   <title>Diego Rivera Correa</title>
 </head>
@@ -24,10 +26,14 @@
 <p style="text-align: center; font-size: large;">
 
     Look around! <br>
+
+<!--En el div llamado row se contiene los dos botones usando Bootsrap con sus colores 
+asignados y funciones de onclick. Mas abajo se encuentra los libretos de JS que ofrecen dichas
+funciones -->
     <div class="row">
         <div class="col-sm-12 text-center">
-            <a href="side.html"><button id="btnSearch" class="btn btn-primary btn-md center-block" Style="display: inline-block; vertical-align: top; width: 100px;" OnClick="displayProblems()" >Projects</button> </a>
-            <a href="cvres.html"><button id="btnClear" class="btn btn-primary btn-md center-block" Style="display: inline-block; vertical-align: top; width: 100px;" > CV </button></a>
+            <a href="side.php"><button id="btnSearch" class="btn btn-primary btn-md center-block" Style="display: inline-block; vertical-align: top; width: 100px;" OnClick="displayProblems()" >Projects</button> </a>
+            <a href="cvres.php"><button id="btnClear" class="btn btn-primary btn-md center-block" Style="display: inline-block; vertical-align: top; width: 100px;" > CV </button></a>
             <!-- <button id="btnClear" class="btn btn-danger btn-md center-block" Style="width: 100px;" OnClick="GMM()" >PHP!</button> -->
          </div>
     </div>
@@ -36,34 +42,14 @@
 
 
 
-<!-- SCRIPT SECTION -->
-<script type="text/javascript" src="function.js"> </script>
+<!-- libretos de JS! -->
+<script type="text/javascript" src="cvscript.js"> </script>
 <script type="text/javascript" src="trivial_functions.js"> </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
 integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"> </script>
 
 <!-- <script src="src/html2pdf.js"></script>
 <script src="https://unpkg.com/html-pdf-adaptive"></script> -->
-
-<!-- <?php
-  function GMM(){
-      $numbers = array(5, 6, 8, 11, 16, 18, 26, 27, 29, 30, 31, 33, 34, 61, 70, 75, 79, 89, 90, 92);
-      $maximum = 0;
-      $minimum = 0;
-
-      foreach($numbers as $vals){
-        if($vals < $minimum or $minimum == 0){
-          $minimum = $vals;
-        }
-        if($vals > $maximum or $maximum == 0){
-          $maximum = $vals;
-        }
-      }
-
-      echo $maximum;
-  }
-?> -->
-
 
 
 </body>
