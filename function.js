@@ -1,15 +1,16 @@
-
-class ProfTitle{
+// Este documento contiene todas las clases que facilitan el desarrollo del CV
+class ProfTitle{ // Prof title asume el rol de recoger el titulo del usuario y su breve objetivo.
     title;
     objective;
-    interests = [];
+    interests = []; // debido a que los intereses son secundarios, no se incluyen en el constructor
     constructor(title, obj){
         this.title = title;
         this.objective = obj;
     }
-
+    // el metodo ayuda ingresar mas interes.
     add_interest(inte){this.interests.push(inte);}
 
+    // este metodo es ayudante del de to_HTML, provee un estilismo de parrafo para despliegar los resultados 
     display_interest(tag){
       let text = "My interests include: ";
       for (let i = 0; i < this.interests.length; i++) {
@@ -24,6 +25,8 @@ class ProfTitle{
       return;
     }
 
+    // este metodo es el corazon. Crea un parrafo que contiene toda la informacion de la clase, y luego 
+	// llama al cuerpo del documento y lo coloca en el mismo
     to_HTML(){
       var tag = document.createElement("p");
 
@@ -44,6 +47,8 @@ class ProfTitle{
       var element = document.getElementById("CV");
       element.appendChild(tag);
     }
+
+
 }
 
 class Recognition{
@@ -64,6 +69,8 @@ class Recognition{
     return;
   }
 
+  // este metodo es el corazon. Crea un parrafo que contiene toda la informacion de la clase, y luego 
+  // llama al cuerpo del documento y lo coloca en el mismo
   to_HTML(){
     var tag = document.createElement("p");
 
@@ -100,6 +107,8 @@ class Courses{
     return;
   }
 
+  // este metodo es el corazon. Crea un parrafo que contiene toda la informacion de la clase, y luego 
+  // llama al cuerpo del documento y lo coloca en el mismo
   to_HTML(){
     var tag = document.createElement("p");
 
@@ -123,7 +132,8 @@ class Contact{
     this.email = em;
     this.number = num;
   }
-
+  // este metodo es el corazon. Crea un parrafo que contiene toda la informacion de la clase, y luego 
+  // llama al cuerpo del documento y lo coloca en el mismo
   to_HTML(){
     var tag = document.createElement("h4");
     tag.appendChild(document.createTextNode(this.email + " | " + this.number))
@@ -141,6 +151,8 @@ class StyleHeader{
       this.section_header = section;
     }
 
+    // este metodo es el corazon. Crea un parrafo que contiene toda la informacion de la clase, y luego 
+    // llama al cuerpo del documento y lo coloca en el mismo
     to_HTML(){
 
       var div = document.createElement("p");
@@ -148,15 +160,6 @@ class StyleHeader{
       tag.appendChild(document.createTextNode(this.section_header))
       tag.setAttribute("id", this.section_header);
       tag.style.cssText = "margin-left:25%;";
-
-      // let resDiv = document.createElement("button");
-      // resDiv.setAttribute("class", "btn btn-danger btn-md center-block")
-      // resDiv.setAttribute("id", "generatePDF")
-      // resDiv.style.cssText = 'margin-left:20%;';
-      // resDiv.innerHTML = "Add to Resume!";
-
-      //tag.appendChild(resDiv)
-
 
       var line = document.createElement("hr")
       line.style.cssText = "height: 2px; background-color: #000000; border: none; width:55%;";
@@ -177,6 +180,9 @@ class CV{
       this.name = FN;
   }
 
+  // este metodo es el corazon. Crea un parrafo que contiene toda la informacion de la clase, y luego 
+  // llama al cuerpo del documento y lo coloca en el mismo
+
   to_HTML(){
     var tag = document.createElement("h2");
     tag.appendChild(document.createTextNode(this.name))
@@ -194,17 +200,20 @@ class Education{
     city;
     state;
     degree_type;
-    GPA;
+    gpa;
     concentration;
-    constructor(name, grad_year, city, state, degree_type, concentration, GPA){
+    constructor(name, grad_year, city, state, degree_type, concentration, gpa){
         this.name = name;
         this.grad_year = grad_year;
         this.city = city;
         this.state = state;
         this.degree_type = degree_type;
         this.concentration = concentration;
-        this.GPA = GPA;
+        this.gpa = gpa;
     }
+
+   // este metodo es el corazon. Crea un parrafo que contiene toda la informacion de la clase, y luego 
+   // llama al cuerpo del documento y lo coloca en el mismo
 
     to_HTML(){
       var tag = document.createElement("p");
@@ -221,7 +230,7 @@ class Education{
 
       var titletagE = document.createElement("p")
       titletagE.style.cssText = 'margin-top: 1%; margin-left: 25%; font-size:large';
-      titletagE.appendChild(document.createTextNode("GPA: " + this.GPA + "/4.00"))
+      titletagE.appendChild(document.createTextNode("GPA: " + this.gpa + "/4.00"))
       tag.appendChild(titletagE);
 
       tag.style.cssText = 'margin-left: 25% width: 50%;';
@@ -258,6 +267,9 @@ class Skills{
     tag.appendChild(item);
     return;
   }
+   // este metodo es el corazon. Crea un parrafo que contiene toda la informacion de la clase, y luego 
+   // llama al cuerpo del documento y lo coloca en el mismo
+
 
   to_HTML(){
     var tag = document.createElement("p");
@@ -319,6 +331,9 @@ class WorkExperience{
       return;
     }
 
+    // este metodo es el corazon. Crea un parrafo que contiene toda la informacion de la clase, y luego 
+    // llama al cuerpo del documento y lo coloca en el mismo
+
     to_HTML(){ // se crea el header, date, y objetivos
       var tag = document.createElement("p");
 
@@ -359,6 +374,9 @@ class Projects{
     return;
   }
 
+// este metodo es el corazon. Crea un parrafo que contiene toda la informacion de la clase, y luego 
+  // llama al cuerpo del documento y lo coloca en el mismo
+
   to_HTML(){
     var tag = document.createElement("p");
 
@@ -382,6 +400,12 @@ class Projects{
 
 }
 
+
+// CurVi es la clase principal que constituye la generacion del CV. Su contructor recibe el valor de un arreglo, y dada una clave con cada punto de valor, 
+// lo corre por su menu de decisiones y crea el objeto que le corresponde. Debido a su poder, la informacion de data se va creando y luego guardando entre
+// los diccionarios dict_headers y dict_vals. dict_headers contiene el nombre de todas las secciones, junto a su valor, inicialmente en 1. A la que se vaya
+// recogiendo la informacion, su valor en el diccionario se actualiza, con el proposito de reducir redundancias. dict_vals tiene como valor inicial un arreglo
+// vacio, y a la que la informacion se procesa, se va almacenando objetos en dicho arreglo, con el proposito de hacer el despliegue de manera organizada.
 class CurVi{
 
     dict_headers = {"Name": 1,"Contact": 1,"Summary": 1,"Education":1
@@ -393,6 +417,8 @@ class CurVi{
 
     data;
 
+// setHeader tiene como proposito recibir data y verificar si el titulo de dicha seccion a existe. Si existe, no se hace nada, pero si no existe, se inicializa
+// el objeto y se almacena el mismo en el diccionario de titulares. 
     setHeader(data){
       var testData = this.dict_headers[data[0]];
       if (1 > 0){
@@ -405,6 +431,7 @@ class CurVi{
       }
     }
 
+// como mencionado previamente, el constructor del CV es la data que vaya a recoger y demostrar. 
     constructor(data){this.data = data;}
 
     title(data){
@@ -473,7 +500,7 @@ class CurVi{
       //objEd.to_HTML();
       this.dict_vals[data[0]].push(objEd);
     }
-
+// La siguiente funcion de addCV se encarga de de recoger la data entregada y genera la cascada de decisiones. Cada punto de data va a una funcion especifica.
     addCV(){
         for (var i = 0; i < this.data.length; i++) {
               if (this.data[i].length == 1) {
@@ -512,6 +539,9 @@ class CurVi{
 
     }
 
+// displayCV se asegura de vaciar el contendio de la pagina. Procede a establecer el boton de descarga y crea el div principal
+// donde se carga toda la informacion. 
+
     displayCV(){
       document.body.innerHTML = " ";
       let cvDiv = document.createElement("button");
@@ -520,18 +550,21 @@ class CurVi{
       cvDiv.style.cssText = 'margin-top: 15px; display: block';
       cvDiv.innerHTML = "Download CV!";
       //
-      let resDiv = document.createElement("button");
-      resDiv.setAttribute("class", "btn btn-danger btn-md center-block")
-      resDiv.setAttribute("id", "generatePDF")
-      resDiv.style.cssText = 'margin-top: 15px; display: block';
-      resDiv.innerHTML = "See Resume! (Click on Section Header to add it to the Resume!)";
+  //    let resDiv = document.createElement("button");
+  //    resDiv.setAttribute("class", "btn btn-danger btn-md center-block")
+  //    resDiv.setAttribute("id", "generatePDF")
+ //     resDiv.style.cssText = 'margin-top: 15px; display: block';
+  //    resDiv.innerHTML = "See Resume! (Click on Section Header to add it to the Resume!)";
 
       let newDiv = document.createElement("div");
       newDiv.setAttribute("id", "CV");
       document.body.appendChild(cvDiv);
-      document.body.appendChild(resDiv);
+   //   document.body.appendChild(resDiv);
       document.body.appendChild(newDiv);
 
+// el siguiente loop corre por los titulares del diccionario. Si ve que existe un objeto, lo despliega. Luego usa esa misma llave
+// para recorrer el arreglo de objetos, para cada uno, tambien lo despliega en la pantalla. Finalmente ofrece el evento del boton
+// establecido para descargar el PDF.
       for (var key in this.dict_headers) {
           var objHeader = this.dict_headers[key];
           if (objHeader == 1){
@@ -549,95 +582,22 @@ class CurVi{
     }
 }
 
-function ObjCollect(){
-
-}
-
-class Resume {
-
-  content = [];
-  fillRes(content){this.content.push(content);}
-
-  display(){
-      for (var i = 0; i < this.content.length; i++) {
-          document.appendChild(this.content[i]);
-      }
-  }
-
-}
-
-function fillRes(resume, content){
-
-}
-
-
-
+// esta funcion usa el framework de HMTL2PDF para generar el mismo
 function generatePDF() {
     var element = document.getElementById('CV');
     html2pdf(element);
 }
 
+// Esta funcion es la que es llamada por la funcion getData() del archivo .php, recibe el arreglo 2D, y primero le limpia las doble comillas innecesarias.
+// Al acabar con la limepieza, crea el objeto CV y le da la senal para add y display.
+function createCV(data){
+    for (let i = 0; i < data.length; i++){
+      for (var j = 0; j < data[i].length; j++) {
+          data[i][j] = data[i][j].replace(/['"]+/g, '');
+      }
+    }
 
-function st(){
-    // for (let i = 0; i < data.length; i++){
-    //   for (var j = 0; j < data[i].length; j++) {
-    //       data[i][j] = data[i][j].replace(/['"]+/g, '');
-    //   }
-    //     // console.log(data[i]);
-    //     //     clean data
-    // }
-    console.log("Got it!");
-    data = [
-      ['Name', 'Diego Luis Rivera Correa'],
-      ['Contact', 'diego.rivera23@upr.edu', '787-502-0936'],
-      ['Summary', 'CS Student', '"I have experience in different fields of CS, specifically with Statistical Analysis."', "ML", "Statistics", "Cognitive Sciences"],
-      ['Education', 'UPRM', '2023', "Mayaguez", "PR", "Bachelor of Science","Computer Science","3.87"],
-      ['Projects', '2022', 'WhatsApp Chat Data Analysis',"Coding Python scripts…3 years into dictionaries with efficient tagging", '"Visualizing tendencies on how frequently messages…nged in hourly, daily, monthly, and yearly basis"', '"Calculated the rate in which users send messages,…s and their ‘busiest’ message sending intervals."', '"Currently researching/testing SKLearn’s DecisionT… messages and determine when would they be sent."'],
-      ['Projects', '2021', 'The NBA Draft: A Historical-Numerical Approach', '"Developed a Python script that extracts data from…d their accumulated counting and computed stats."', '"Performed t-tests and f-tests using Python’s stat…eir statistics across different periods of time."', '"Cleaned and pivoted data with Pandas and prepared…animations using Python’s FuncAnimation library."', '"Created a metric that combines all counting and c…esults were 83.3% compatible with their results."', '"Documented and kept track of all progress with La…Project was made as part of the MATE4990 course."'],
-      ['Skills', 'Programming', 'Python', 'C++', 'JS', 'PHP'],
-      ['Languages','Spanish', 'English'],
-      ['Skills', 'Data Analysis Libaries','Pandas', 'Numpy', 'Seaborn', 'Matplotlib'],
-      ['Recognitions', '2022', 'Georgia Tech Focus Scholar'],
-      ['Recognitions', '2021', 'LinkedIn Certified: Probability and Statistics'],
-      ['Recognitions', '2021', 'LinkedIn Certified: Python for Data Analysis'],
-      ['Recognitions', '2020', 'UPRM Dean’s List'],
-      ['Recognitions', '2020', 'BPPR Power BI and Excel Certification'],
-      ['Recognitions', '2019', 'UPRM IEEE 8th Generation Scholar'],
-      ['Recognitions', '2019', 'US Presidential Award for Academic Excellence'],
-      ['Courses', 'COMP4017', 'Algorithms'],
-      ['Courses', 'COMP4018', 'Database Systems'],
-      ['Courses', 'COMP4036', 'Computer Graphics'],
-      ['Courses', 'COMP3075', 'Data Structures'],
-      ['Courses', 'MATE4031', 'Linear Algebra'],
-      ['Courses', 'MATE3031/3032/3063', 'Calculus I-III']
-
-    ]
       cv = new CurVi(data);
       cv.addCV();
       cv.displayCV();
-
-}
-
-function rescont(){
-    document.body.innerHTML = " ";
-    let cvDiv = document.createElement("button");
-    cvDiv.setAttribute("class", "btn btn-primary btn-md center-block")
-    cvDiv.setAttribute("id", "generatePDF")
-    cvDiv.style.cssText = 'margin-top: 15px; display: block';
-    cvDiv.innerHTML = "Download Resume!";
-
-
-    let newDiv = document.createElement("div");
-    newDiv.setAttribute("id", "Resume");
-    document.body.appendChild(cvDiv);
-    //document.body.appendChild(resDiv);
-    document.body.appendChild(newDiv);
-
-    y = document.getElementById("Resume")
-    arr = document.getElementsByName("Education");
-    for (var i = 0; i < arr.length; i++) {
-       y.appendChild(arr[i]);
-    }
-
-
 }
