@@ -177,6 +177,7 @@ class StyleHeader{
     }
 }
 
+// la clase Name le da el primer elemento al CV. Con su constructor recibe el nombre completo de la persona.
 class Name{
   name;
   constructor(FN){
@@ -197,6 +198,8 @@ class Name{
 
 }
 
+// la clase Education tiene como variables: name (college Name), grad_year, city (college location), state, degree_type (MS, BS, PhD), GPA
+// concentration (CS, Math, English, etc.). Las mismas son pasadas por el constructor.
 class Education{
     name;
     grad_year;
@@ -244,14 +247,17 @@ class Education{
     }
 }
 
+// la clase Skills es bien parecida a recognitions y courses. Tiene una variable que representa el tipo de skill (Language, Programming, Analysis, etc), 
+// y los almacena en un arreglo.
 class Skills{
   type;
   skills = []
   constructor(type){this.type = type;}
 
-  add_task(task){this.skills.push(task);}
+  add_task(task){this.skills.push(task);} // recibe un skill y lo almacena en el arreglo.
 
-  display_task(tag, type){
+
+  display_task(tag, type){ // se escribe un formato de tipo: skill, skill, etc.
     let text = "";
     for (let i = 0; i < this.skills.length; i++) {
         if (i == this.skills.length -1){
@@ -295,10 +301,9 @@ class Skills{
     element.appendChild(tag);
   }
 
-
-
 }
 
+// la clase Language hereda los atributos de Skills. Ya que Language es un tipo de Skill
 class Language extends Skills{
     constructor(type){
       super(type);
@@ -306,7 +311,8 @@ class Language extends Skills{
 }
 
 
-
+// La clase de WorkExperience tiene como variables al nombre de la compañîa/institución, el año del trabajo y el rol. Junto a estas hay un arreglo de
+// eventos/responsabilidades que se llevaron a cabo. companía, rol y año se pasa por el constructor, y la función add_task agrega los eventos
 class WorkExperience{
     company;
     year;
@@ -319,9 +325,9 @@ class WorkExperience{
         this.role = role;
     }
 
-    add_task(task){this.tasks.push(task);}
+    add_task(task){this.tasks.push(task);} // se agrega evento al arreglo
 
-    display_task(tag, type){
+    display_task(tag, type){ // se escribe un formato lista con cada task.
       for (let i = 0; i < this.tasks.length; i++) {
           var item = document.createElement(type);
           item.appendChild(document.createTextNode(this.tasks[i]))
@@ -353,6 +359,8 @@ class WorkExperience{
 
 }
 
+// La clase de Projects es bien parecida a la de WorkExperience. tiene como variables el año del trabajo y el titulo del trabajo. Junto a estas hay un arreglo de
+// eventos/responsabilidades que se llevaron a cabo. año y titulo se pasa por el constructor, y la función add_task agrega los eventos
 class Projects{
   year;
   title;
@@ -362,10 +370,10 @@ class Projects{
     this.title = title;
   }
 
-  add_task(task){this.tasks.push(task);}
+  add_task(task){this.tasks.push(task);} // se agrega evento al arreglo
 
   display_task(tag, type){
-    for (let i = 0; i < this.tasks.length; i++) {
+    for (let i = 0; i < this.tasks.length; i++) { // se escribe un formato lista con cada task.
         var item = document.createElement(type);
         item.appendChild(document.createTextNode(this.tasks[i]))
         tag.appendChild(item)
@@ -432,6 +440,7 @@ class CurVi{
 
 // como mencionado previamente, el constructor del CV es la data que vaya a recoger y demostrar. 
     constructor(data){this.data = data;}
+
 
     title(data){
       let cv = new Name(data[1]);
