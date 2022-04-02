@@ -177,7 +177,7 @@ class StyleHeader{
     }
 }
 
-class CV{
+class Name{
   name;
   constructor(FN){
       this.name = FN;
@@ -434,7 +434,7 @@ class CurVi{
     constructor(data){this.data = data;}
 
     title(data){
-      let cv = new CV(data[1]);
+      let cv = new Name(data[1]);
       this.dict_headers[data[0]] = cv;
     }
 
