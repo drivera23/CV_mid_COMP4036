@@ -442,16 +442,24 @@ class CurVi{
     constructor(data){this.data = data;}
 
 
+// ahora viene la porcion de funciones miembros que se encarga de almacenar la data dada. los formatos se explican en el readme file. 
+// casi todas las proximas funciones incorporan setHeader y luego proceden a almacenar informacion en los componentes de dict_values.
+
+// title crea el objeto Name con el nombre dado. y luego alamcena en dict_headers su valor
     title(data){
       let cv = new Name(data[1]);
       this.dict_headers[data[0]] = cv;
     }
 
+// contact crea el objeto Contact con el email y numero dado. y luego alamcena en dict_headers su valor
     contact(data){
       let contact = new Contact(data[1], data[2]);
       this.dict_headers[data[0]] = contact;
     }
 
+// summary primero verifica si ya existe dicho objeto que representa su header. Crea el objeto ProfTitle con titulo y objetivo dado. y luego alamcena en dicho objeto 
+// almacena los intereses y con su llave inicial en el primer espacio (vea formato) y accede a dict_vals guarda los cambios en el arreglo que corresponde
+// al objeto.
     summary(data){
       this.setHeader(data);
       let summ = new ProfTitle(data[1], data[2]);
@@ -461,6 +469,9 @@ class CurVi{
       this.dict_vals[data[0]].push(summ);
     }
 
+// project primero verifica si ya existe dicho objeto que representa su header. Crea el objeto Projects con titulo y año dado. y luego alamcena en dicho objeto 
+// almacena los tasks y con su llave inicial en el primer espacio (vea formato) y accede a dict_vals guarda los cambios en el arreglo que corresponde
+// al objeto.
     project(data){
       this.setHeader(data);
       let proj = new Projects(data[1], data[2]);
@@ -470,13 +481,17 @@ class CurVi{
       this.dict_vals[data[0]].push(proj);
     }
 
+// courses primero verifica si ya existe dicho objeto que representa su header. Crea el objeto Courses con el codigo y nombre dado. y luego almacena
+// con su llave inicial en el primer espacio (vea formato) accede a dict_vals y guarda los cambios en el arreglo que corresponde al objeto.
     courses(data){
       this.setHeader(data);
       let co = new Courses();
       co.add_course(data[1], data[2]);
       this.dict_vals[data[0]].push(co);
     }
-    //
+
+// skills primero verifica si ya existe dicho objeto que representa su header. Crea el objeto Skills con el tipo dado. Procede a guardar en su arreglo
+// de skills los ingresados en .csv y luego almacena con su llave inicial en el primer espacio (vea formato) accede a dict_vals y guarda los cambios en el arreglo que corresponde al objeto.
     skills(data){
       this.setHeader(data);
       let skobj = new Skills(data[1]);
@@ -485,14 +500,20 @@ class CurVi{
       }
       this.dict_vals[data[0]].push(skobj);
     }
-    //
+
+// recog primero verifica si ya existe dicho objeto que representa su header. Crea el objeto Recognition con el año y nombre dado. Procede a guardar en su arreglo
+// de skills los ingresados en .csv y luego almacena con su llave inicial en el primer espacio (vea formato) accede a dict_vals y guarda los cambios en el arreglo que corresponde al objeto.
     recog(data){
       this.setHeader(data);
       let rec = new Recognition();
       rec.add_task(data[2], data[1]);
       this.dict_vals[data[0]].push(rec);
     }
-    //
+	
+// workex primero verifica si ya existe dicho objeto que representa su header. Crea el objeto WorkExperience con la compañïa, titulo del rol y año dado. y luego alamcena en dicho objeto 
+// almacena los tasks y con su llave inicial en el primer espacio (vea formato), accede a dict_vals guarda los cambios en el arreglo que corresponde
+// al objeto.
+	
     workex(data){
       this.setHeader(data);
       let obj = new WorkExperience(data[1], data[2], data[3]);
@@ -501,7 +522,11 @@ class CurVi{
       }
       this.dict_vals[data[0]].push(obj);
     }
-    //
+
+
+// education primero verifica si ya existe dicho objeto que representa su header. Crea el objeto Education con el name, grad_year, city, state, degree_type (MS, BS, PhD), GPA
+// concentration (CS, Math, English, etc.) dado. y luego alamacena en dicho objeto y con su llave inicial en el primer espacio (vea formato), accede a dict_vals guarda los cambios en el arreglo que corresponde
+// al objeto.
     education(data){
       this.setHeader(data);
       let objEd = new Education(data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
