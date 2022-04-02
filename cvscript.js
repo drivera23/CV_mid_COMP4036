@@ -51,16 +51,18 @@ class ProfTitle{ // Prof title asume el rol de recoger el titulo del usuario y s
 
 }
 
+// la clase Recognition no tiene constructor, solamente agrega los recognitions a dos arreglos, uno del año, y uno del nombre del reconocimiento y 
+// tambien los despliega.
 class Recognition{
   recog = [];
   years = [];
 
-  add_task(recog, year){
+  add_task(recog, year){ // se agrega un recognition dado
     this.recog.push(recog);
     this.years.push(year);
   }
 
-  display_task(tag, type){
+  display_task(tag, type){ // se escribe un formato de año | reconocimiento como tipo lista.
     for (let i = 0; i < this.recog.length; i++) {
         var item = document.createElement(type);
         item.appendChild(document.createTextNode(this.years[i] + " | " + this.recog[i]))
@@ -85,21 +87,21 @@ class Recognition{
     var element = document.getElementById("CV");
     element.appendChild(tag);
   }
-
-
 }
 
+// la clase Courses y parecida a Recognition no tiene constructor, solamente agrega los courses a dos arreglos, uno del coursename, y uno del codigo del 
+// course y tambien los despliega.
 class Courses{
   courses = [];
   coursecode = [];
 
-  add_course(code, course){
+  add_course(code, course){ // se agrega un course dado
     this.coursecode.push(code);
     this.courses.push(course);
   }
 
   display_task(tag, type){
-    for (let i = 0; i < this.courses.length; i++) {
+    for (let i = 0; i < this.courses.length; i++) { // se escribe un formato de coursecode : coursename como tipo lista.
         var item = document.createElement(type);
         item.appendChild(document.createTextNode(this.coursecode[i] + ": " + this.courses[i]))
         tag.appendChild(item)
@@ -126,6 +128,7 @@ class Courses{
 
 }
 
+// la clase Contact tiene como variables email y number (telefono). Como constructor recibe el email y number, y tiene el metodo de despliegue 
 class Contact{
   email; number;
   constructor(em, num){
@@ -144,8 +147,8 @@ class Contact{
   }
 }
 
-class StyleHeader{
 
+class StyleHeader{
     section_header;
     constructor(section){
       this.section_header = section;
@@ -239,10 +242,6 @@ class Education{
       var element = document.getElementById("CV");
       element.appendChild(tag);
     }
-
-
-
-
 }
 
 class Skills{
@@ -549,12 +548,6 @@ class CurVi{
       cvDiv.setAttribute("id", "generatePDF")
       cvDiv.style.cssText = 'margin-top: 15px; display: block';
       cvDiv.innerHTML = "Download CV!";
-      //
-  //    let resDiv = document.createElement("button");
-  //    resDiv.setAttribute("class", "btn btn-danger btn-md center-block")
-  //    resDiv.setAttribute("id", "generatePDF")
- //     resDiv.style.cssText = 'margin-top: 15px; display: block';
-  //    resDiv.innerHTML = "See Resume! (Click on Section Header to add it to the Resume!)";
 
       let newDiv = document.createElement("div");
       newDiv.setAttribute("id", "CV");
@@ -589,7 +582,7 @@ function generatePDF() {
 }
 
 // Esta funcion es la que es llamada por la funcion getData() del archivo .php, recibe el arreglo 2D, y primero le limpia las doble comillas innecesarias.
-// Al acabar con la limepieza, crea el objeto CV y le da la senal para add y display.
+// Al acabar con la limepieza, crea el objeto CV y le da la señal para add y display.
 function createCV(data){
     for (let i = 0; i < data.length; i++){
       for (var j = 0; j < data[i].length; j++) {
