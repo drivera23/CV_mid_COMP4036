@@ -1,4 +1,4 @@
-
+// GetMinMax busca el minimo y maximo de un conjunto con un for loop lineal sencillo y escribe los resultados en el espacio indicado en el archivo de side.php
 function GetMinMax(){
   numbers = [5, 6, 8, 11, 16, 18, 26, 27, 29, 30, 31, 33, 34, 61, 70, 75, 79, 89, 90, 92];
   console.log("Given the array: " + numbers);
@@ -19,6 +19,7 @@ function GetMinMax(){
 
 }
 
+// fact es la funcion estandar para usar recursividad al generar numeros factoriales
 function fact(n){
     if (n <= 1){
         return 1;
@@ -26,6 +27,7 @@ function fact(n){
     return  n * fact(n-1);
 }
 
+// GetMinMax busca el producto y suma de los primeros 10 numeros naturales con un for loop lineal sencillo y escribe los resultados en el espacio indicado en el archivo de side.php
 function Get10NN(){
 
   total = 0;
@@ -39,10 +41,9 @@ function Get10NN(){
   element.innerHTML = "The sum =  "+ total + "<br> The product = " + prod;
 }
 
-function GMMPHP(){
-  var htmlString="<?php echo $htmlString; ?>";
-}
 
+// getNfact usa el window object para recibir el URL, lo rompemos con el divisor de ? y como es solo una parametro, lo que esta despues del = ya es lo necesario, se convierte a entero e invocamos
+// la funcion factorial y se escribe el resultado en el espacio indicado en el archivo de side.php
 function getNfact(){
   let S = window.location.href;
   let paramString = S.split('?')[1];
@@ -56,6 +57,8 @@ function getNfact(){
   element.innerHTML = res;
 }
 
+// la funcion isPrime devuelve un C/F si un numero no es primo, hace el trabajo mas facil de leer
+
 function isPrime(n) {
 
 	if(n == 1 || n == 0) return false;
@@ -67,6 +70,7 @@ function isPrime(n) {
 	return true;
 }
 
+// la funcion findPrime establece el range de los numeros a ser examinados, a cada uno se invoca la funcion isPrime, si es cierto, se agrega a un arreglo y se despliuega el resultado en el espacio indicado en el archivo de side.php
 function findPrime(){
 r = [];
 var N = 20;
@@ -82,13 +86,3 @@ element.innerHTML = "[" + r + "]";
 
 
 }
-
-
-
-
-
-
-
-
-
-// EXTRACTED FROM ONLINE
