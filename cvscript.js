@@ -589,9 +589,9 @@ class CurVi{
    //   document.body.appendChild(resDiv);
       document.body.appendChild(newDiv);
 
-// el siguiente loop corre por los titulares del diccionario. Si ve que existe un objeto, lo despliega. Luego usa esa misma llave
-// para recorrer el arreglo de objetos, para cada uno, tambien lo despliega en la pantalla. Finalmente ofrece el evento del boton
-// establecido para descargar el PDF.
+// el siguiente loop corre por los titulares del diccionario. Si ve que existe un objeto, lo despliega (el titular). Luego usa esa misma llave
+// para recorrer el arreglo de objetos (vals), para cada uno, tambien lo despliega en la pantalla. Finalmente ofrece el evento del boton
+// establecido para descargar el PDF. 
       for (var key in this.dict_headers) {
           var objHeader = this.dict_headers[key];
           if (objHeader == 1){
