@@ -1,0 +1,12 @@
+Referencias del código:
+
+* JS code:
+    * Prime numbers: https://www.programiz.com/javascript/examples/prime-number-intervals
+    * Get Value from URL: https://www.sitepoint.com/get-url-parameters-with-javascript
+    * HTML to PDF: https://www.npmjs.com/package/html-to-pdf-js
+    * Read CSV data: https://www.youtube.com/watch?v=RfMkdvN-23o&t=748s
+* PHP code:
+    * Prime numbers: https://www.javatpoint.com/php-prime-number
+* Bootstrap Layout:
+    * Buttons and general layout: https://getbootstrap.com/docs/4.0/components/buttons/
+
