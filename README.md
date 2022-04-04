@@ -27,3 +27,6 @@ asi el CV sabe como limpiar cada dato. Ahora ilustrare el formato para todos.
 - Skills = [Skills, SkillType (ie Programming, Laguage, etc), SkillName] (it can be multiple SkillNames)
 - Recognitions = [Recognitions, YearGiven, RecognitionName]
 - Courses = [Courses, CourseCode, CourseName]
+
+Debido a un mal manejamiento/diseño, si el usuario desea añadir entradas, deben ser correspondiente a donde estan sus datos. i.e., 
+debe colocar un nuevo project luego del ultimo espacio del project que ya existe en el .csv
