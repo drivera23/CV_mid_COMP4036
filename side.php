@@ -166,7 +166,7 @@
 
   <!-- Problem 4 (N! passed by URL): Se crea el titulo del problema detallando la premisa, junto al boton indicando la solucion con su lenguaje especifico, el boton tiene su funcion de evento  -->
     <div class="col-sm-12 text-center">
-        <h4 style="text-align: center "> Find N! (type in the URL "?N=#", # being your number) </h4>
+        <h4 style="text-align: center "> Find N! (type at the end of the URL "?N=#", # being your number) </h4>
 
         <button type="button" class="btn btn-primary btn-md center-block"
         style="width: 200px; content-align: center; display: inline-block; vertical-align: top;" onclick="getNfact()"> Solution with JS </button>
