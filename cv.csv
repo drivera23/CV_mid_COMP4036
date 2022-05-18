@@ -1,25 +1,25 @@
 Type,val,val
-Name,Diego Luis Rivera Correa
-Contact,diego.rivera23@upr.edu,787-502-0936
-Summary,CS Student,"I have experience in different fields of CS, specifically with Statistical Analysis.","Machine Learning","Statistical Methods","Cognitive Sciences"
-Education,"UPRM","2023","Mayaguez","PR","Bachelor of Science","Computer Science","3.87"
-Professional Experiences,AIG,2021,App Development Intern,"Optimized data-gathering code using Ruby to examine thousands of server checkpoint and compliance standards.","Wrote queries using PostgreSQL to connect multiple relations and further analyze servers and their data fields.","Developed a Power BI dashboard to demonstrate outliers and group/label data for future compliance updates."
-Professional Experiences,Andeno,2021,Data Science Intern,"Worked on historical transaction data using Jupyter Notebooks for user inflow/outflow analytics and visualization.","Performed multiple statistical tests on gathered data for possible algorithm improvement and outlier detection.","Coded Python scripts for data labelling, cleaning, and extraction for predictive tendency models for hundreds of users.","Used Python libraries: Pandas, Matplotlib, CSV, Numpy, Scipy.Stats, and Seaborn."
-Projects,2022,WhatsApp Chat Data Analysis,"Coding Python scripts using JupyterLab for cleaning and parsing over 160k messages spanning through 3 years into dictionaries with efficient tagging","Visualizing tendencies on how frequently messages are exchanged in hourly, daily, monthly, and yearly basis","Calculated the rate in which users send messages, as well as determining the user with the most messages and their ‘busiest’ message sending intervals.","Currently researching/testing SKLearn’s DecisionTrees to classify messages and determine when would they be sent."
-Projects,2021,The NBA Draft: A Historical-Numerical Approach,"Developed a Python script that extracts data from around 4k NBA players and their accumulated counting and computed stats.","Performed t-tests and f-tests using Python’s stats module to compare if different NBA decade players can translate their statistics across different periods of time.","Cleaned and pivoted data with Pandas and prepared a data pipeline to create data animations using Python’s FuncAnimation library.","Created a metric that combines all counting and computed stats that determines which NBA draft class is objectively better. According to Bleacher Report’s studies, the results were 83.3% compatible with their results.","Documented and kept track of all progress with LaTeX. Project was made as part of the MATE4990 course."
-Skills,Programming,Python,C++,JS,PHP
-Skills,Language,Spanish,English
-Skills,Pandas,Numpy,Seaborn,Matplotlib
-Recognitions,2022,Georgia Tech Focus Scholar
-Recognitions,2021,LinkedIn Certified: Probability and Statistics
-Recognitions,2021,LinkedIn Certified: Python for Data Analysis
-Recognitions,2020,UPRM Dean’s List
-Recognitions,2020,BPPR Power BI and Excel Certification
-Recognitions,2019,UPRM IEEE 8th Generation Scholar
-Recognitions,2019,US Presidential Award for Academic Excellence
-Courses,COMP4017,Algorithms
-Courses,COMP4018,Database Systems
-Courses,COMP4036,Computer Graphics
-Courses,COMP3075,Data Structures
-Courses,MATE4031,Linear Algebra
-Courses,MATE3031/3032/3063,Calculus I-III
+Name,Diego Luis Rivera Correa,1
+Contact,diego.rivera23@upr.edu,787-502-0936,1
+Summary,CS Student,"I have experience in different fields of CS, specifically with Statistical Analysis.","Machine Learning","Statistical Methods","Cognitive Sciences",1
+Education,"UPRM","2023","Mayaguez","PR","Bachelor of Science","Computer Science","3.87",1
+Professional Experiences,AIG,2021,App Development Intern,"Optimized data-gathering code using Ruby to examine thousands of server checkpoint and compliance standards.","Wrote queries using PostgreSQL to connect multiple relations and further analyze servers and their data fields.","Developed a Power BI dashboard to demonstrate outliers and group/label data for future compliance updates.",1
+Professional Experiences,Andeno,2021,Data Science Intern,"Worked on historical transaction data using Jupyter Notebooks for user inflow/outflow analytics and visualization.","Performed multiple statistical tests on gathered data for possible algorithm improvement and outlier detection.","Coded Python scripts for data labelling, cleaning, and extraction for predictive tendency models for hundreds of users.","Used Python libraries: Pandas, Matplotlib, CSV, Numpy, Scipy.Stats, and Seaborn.",1
+Projects,2022,WhatsApp Chat Data Analysis,"Coding Python scripts using JupyterLab for cleaning and parsing over 160k messages spanning through 3 years into dictionaries with efficient tagging","Visualizing tendencies on how frequently messages are exchanged in hourly, daily, monthly, and yearly basis","Calculated the rate in which users send messages, as well as determining the user with the most messages and their ‘busiest’ message sending intervals.","Currently researching/testing SKLearn’s DecisionTrees to classify messages and determine when would they be sent.",1
+Projects,2021,The NBA Draft: A Historical-Numerical Approach,"Developed a Python script that extracts data from around 4k NBA players and their accumulated counting and computed stats.","Performed t-tests and f-tests using Python’s stats module to compare if different NBA decade players can translate their statistics across different periods of time.","Cleaned and pivoted data with Pandas and prepared a data pipeline to create data animations using Python’s FuncAnimation library.","Created a metric that combines all counting and computed stats that determines which NBA draft class is objectively better. According to Bleacher Report’s studies, the results were 83.3% compatible with their results.","Documented and kept track of all progress with LaTeX. Project was made as part of the MATE4990 course.",1
+Skills,Programming,Python,C++,1
+Skills,Language,Spanish,English,1
+Skills,Statistical Tools,Pandas,Numpy,Seaborn,Matplotlib,1
+Recognitions,2022,Georgia Tech Focus Scholar,0
+Recognitions,2021,LinkedIn Certified: Probability and Statistics,0
+Recognitions,2021,LinkedIn Certified: Python for Data Analysis,1
+Recognitions,2020,UPRM Dean’s List,1
+Recognitions,2020,BPPR Power BI and Excel Certification,0
+Recognitions,2019,UPRM IEEE 8th Generation Scholar,1
+Recognitions,2019,US Presidential Award for Academic Excellence,1
+Courses,COMP4017,Algorithms,1
+Courses,COMP4018,Database Systems,1
+Courses,COMP4036,Computer Graphics,1
+Courses,COMP3075,Data Structures,0
+Courses,MATE4031,Linear Algebra,0
+Courses,MATE3031/3032/3063,Calculus I-III,1
