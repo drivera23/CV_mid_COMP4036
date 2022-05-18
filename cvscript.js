@@ -3,12 +3,16 @@ class ProfTitle{ // Prof title asume el rol de recoger el titulo del usuario y s
     title;
     objective;
     interests = []; // debido a que los intereses son secundarios, no se incluyen en el constructor
+    res_interests = [];
     constructor(title, obj){
         this.title = title;
         this.objective = obj;
     }
     // el metodo ayuda ingresar mas interes.
     add_interest(inte){this.interests.push(inte);}
+
+    add_res_interest(inte){this.res_interests.push(inte);}
+
 
     // este metodo es ayudante del de to_HTML, provee un estilismo de parrafo para despliegar los resultados 
     display_interest(tag){
@@ -48,24 +52,59 @@ class ProfTitle{ // Prof title asume el rol de recoger el titulo del usuario y s
       element.appendChild(tag);
     }
 
+    to_Res(){
+      var tag = document.createElement("p");
+
+      var c = document.createElement("p");
+      c.appendChild(document.createTextNode("Im a(n) " + this.title + " and " + this.objective));
+      c.style.cssText = 'font-size: large; margin-left: 25%; margin-right: 25%;';
+      tag.appendChild(c);
+      //tag.style.cssText = 'margin-left: 25% width: 50%;';
+
+      var pi = document.createElement("p");
+      this.display_interest(pi);
+      pi.style.cssText = 'font-size: large; margin-left: 25%; margin-right: 25%;';
+      tag.appendChild(pi);
+      tag.style.cssText = 'margin-left: 25% width: 50%;';
+
+      tag.setAttribute("name", "Summary");
+
+      var element = document.getElementById("Res");
+      element.appendChild(tag);
+    }
+
 
 }
 
-// la clase Recognition no tiene constructor, solamente agrega los recognitions a dos arreglos, uno del año, y uno del nombre del reconocimiento y 
-// tambien los despliega.
 class Recognition{
   recog = [];
   years = [];
+  res_recog = [];
+  res_years = [];
 
-  add_task(recog, year){ // se agrega un recognition dado
+  add_task(recog, year){
     this.recog.push(recog);
     this.years.push(year);
   }
 
-  display_task(tag, type){ // se escribe un formato de año | reconocimiento como tipo lista.
+  add_res_task(recog, year){
+    this.res_recog.push(recog);
+    this.res_years.push(year);
+  }
+
+  display_task(tag, type){
     for (let i = 0; i < this.recog.length; i++) {
         var item = document.createElement(type);
         item.appendChild(document.createTextNode(this.years[i] + " | " + this.recog[i]))
+        tag.appendChild(item)
+    }
+    return;
+  }
+
+  display_res_task(tag, type){
+    for (let i = 0; i < this.res_recog.length; i++) {
+        var item = document.createElement(type);
+        item.appendChild(document.createTextNode(this.res_years[i] + " | " + this.res_recog[i]))
         tag.appendChild(item)
     }
     return;
@@ -87,23 +126,54 @@ class Recognition{
     var element = document.getElementById("CV");
     element.appendChild(tag);
   }
+
+  to_Res(){
+    var tag = document.createElement("p");
+
+    tag.style.cssText = 'margin-left: 25% width: 50%;';
+    var ul = document.createElement("ul");
+    this.display_res_task(ul, 'li');
+    ul.style.cssText = 'font-size: large; margin-left: 25%; margin-right: 25%;';
+    tag.appendChild(ul);
+
+    tag.setAttribute("name", "Recognitions");
+
+    var element = document.getElementById("Res");
+    element.appendChild(tag);
+  }
+
+
 }
 
-// la clase Courses y parecida a Recognition no tiene constructor, solamente agrega los courses a dos arreglos, uno del coursename, y uno del codigo del 
-// course y tambien los despliega.
 class Courses{
   courses = [];
   coursecode = [];
+  res_courses = [];
+  res_coursecode = [];
 
-  add_course(code, course){ // se agrega un course dado
+  add_course(code, course){
     this.coursecode.push(code);
     this.courses.push(course);
   }
 
+  add_res_course(code, course){
+    this.res_coursecode.push(code);
+    this.res_courses.push(course);
+  }
+
   display_task(tag, type){
-    for (let i = 0; i < this.courses.length; i++) { // se escribe un formato de coursecode : coursename como tipo lista.
+    for (let i = 0; i < this.courses.length; i++) {
         var item = document.createElement(type);
         item.appendChild(document.createTextNode(this.coursecode[i] + ": " + this.courses[i]))
+        tag.appendChild(item)
+    }
+    return;
+  }
+
+  display_res_task(tag, type){
+    for (let i = 0; i < this.res_courses.length; i++) {
+        var item = document.createElement(type);
+        item.appendChild(document.createTextNode(this.res_coursecode[i] + ": " + this.res_courses[i]))
         tag.appendChild(item)
     }
     return;
@@ -126,15 +196,30 @@ class Courses{
     element.appendChild(tag);
   }
 
+  to_Res(){
+    var tag = document.createElement("p");
+
+    tag.style.cssText = 'margin-left: 25% width: 50%;';
+    var ul = document.createElement("ul");
+    this.display_res_task(ul, 'li');
+    ul.style.cssText = 'font-size: large; margin-left: 25%; margin-right: 25%;';
+    tag.appendChild(ul);
+
+    tag.setAttribute("name", "Courses");
+
+    var element = document.getElementById("Res");
+    element.appendChild(tag);
+  }
+
 }
 
-// la clase Contact tiene como variables email y number (telefono). Como constructor recibe el email y number, y tiene el metodo de despliegue 
 class Contact{
   email; number;
   constructor(em, num){
     this.email = em;
     this.number = num;
   }
+
   // este metodo es el corazon. Crea un parrafo que contiene toda la informacion de la clase, y luego 
   // llama al cuerpo del documento y lo coloca en el mismo
   to_HTML(){
@@ -145,10 +230,20 @@ class Contact{
     var element = document.getElementById("CV");
     element.appendChild(tag);
   }
+
+  to_Res(){
+    var tag = document.createElement("h4");
+    tag.appendChild(document.createTextNode(this.email + " | " + this.number))
+    tag.style.cssText = "text-align:center;";
+
+    var element = document.getElementById("Res");
+    element.appendChild(tag);
+  }
 }
 
 
 class StyleHeader{
+
     section_header;
     constructor(section){
       this.section_header = section;
@@ -157,6 +252,27 @@ class StyleHeader{
     // este metodo es el corazon. Crea un parrafo que contiene toda la informacion de la clase, y luego 
     // llama al cuerpo del documento y lo coloca en el mismo
     to_HTML(){
+
+      var div = document.createElement("p");
+      var tag = document.createElement("h3");
+      tag.appendChild(document.createTextNode(this.section_header))
+      tag.setAttribute("id", this.section_header);
+      tag.style.cssText = "margin-left:25%;";
+      tag.addEventListener("click",this.getRes);
+
+      var line = document.createElement("hr")
+      line.style.cssText = "height: 2px; background-color: #000000; border: none; width:55%;";
+
+      div.appendChild(tag);
+      div.appendChild(line);
+
+      div.setAttribute("name", this.section_header);
+
+      var element = document.getElementById("CV");
+      element.appendChild(div);
+    }
+
+    to_Res(){
 
       var div = document.createElement("p");
       var tag = document.createElement("h3");
@@ -172,13 +288,12 @@ class StyleHeader{
 
       div.setAttribute("name", this.section_header);
 
-      var element = document.getElementById("CV");
+      var element = document.getElementById("Res");
       element.appendChild(div);
     }
 }
 
-// la clase Name le da el primer elemento al CV. Con su constructor recibe el nombre completo de la persona.
-class Name{
+class CV{
   name;
   constructor(FN){
       this.name = FN;
@@ -196,10 +311,17 @@ class Name{
     element.appendChild(tag);
   }
 
+  to_Res(){
+    var tag = document.createElement("h2");
+    tag.appendChild(document.createTextNode(this.name))
+    tag.style.cssText = "text-align: center";
+
+    var element = document.getElementById("Res");
+    element.appendChild(tag);
+  }
+
 }
 
-// la clase Education tiene como variables: name (college Name), grad_year, city (college location), state, degree_type (MS, BS, PhD), GPA
-// concentration (CS, Math, English, etc.). Las mismas son pasadas por el constructor.
 class Education{
     name;
     grad_year;
@@ -245,19 +367,46 @@ class Education{
       var element = document.getElementById("CV");
       element.appendChild(tag);
     }
+
+    to_Res(){
+      var tag = document.createElement("p");
+
+      var titletagC = document.createElement("h4")
+      titletagC.style.cssText = 'margin-left: 25%;';
+      titletagC.appendChild(document.createTextNode(this.grad_year + " | " + this.name + ", " + this.city + ", " + this.state  ))
+      tag.appendChild(titletagC)
+
+      var titletagR = document.createElement("p")
+      titletagR.style.cssText = 'margin-top: 1%; margin-left: 25%; font-size:large';
+      titletagR.appendChild(document.createTextNode(this.degree_type + " in " + this.concentration))
+      tag.appendChild(titletagR);
+
+      var titletagE = document.createElement("p")
+      titletagE.style.cssText = 'margin-top: 1%; margin-left: 25%; font-size:large';
+      titletagE.appendChild(document.createTextNode("GPA: " + this.gpa + "/4.00"))
+      tag.appendChild(titletagE);
+
+      tag.style.cssText = 'margin-left: 25% width: 50%;';
+      tag.setAttribute("name", "Education");
+
+      var element = document.getElementById("Res");
+      element.appendChild(tag);
+    }
+
 }
 
-// la clase Skills es bien parecida a recognitions y courses. Tiene una variable que representa el tipo de skill (Language, Programming, Analysis, etc), 
-// y los almacena en un arreglo.
+
 class Skills{
   type;
   skills = []
+  res_skills = [];
   constructor(type){this.type = type;}
 
-  add_task(task){this.skills.push(task);} // recibe un skill y lo almacena en el arreglo.
+  add_task(task){this.skills.push(task);}
 
+  add_res_task(task){this.res_skills.push(task);}
 
-  display_task(tag, type){ // se escribe un formato de tipo: skill, skill, etc.
+  display_task(tag, type){
     let text = "";
     for (let i = 0; i < this.skills.length; i++) {
         if (i == this.skills.length -1){
@@ -265,6 +414,22 @@ class Skills{
         }
         else {
           text += this.skills[i] + ", ";
+        }
+    }
+    var item = document.createElement(type);
+    item.appendChild(document.createTextNode(text));
+    tag.appendChild(item);
+    return;
+  }
+
+  display_res_task(tag, type){
+    let text = "";
+    for (let i = 0; i < this.res_skills.length; i++) {
+        if (i == this.res_skills.length -1){
+          text += this.res_skills[i]
+        }
+        else {
+          text += this.res_skills[i] + ", ";
         }
     }
     var item = document.createElement(type);
@@ -301,9 +466,35 @@ class Skills{
     element.appendChild(tag);
   }
 
+  to_Res(){
+    var tag = document.createElement("p");
+
+    var titletagC = document.createElement("h4")
+    titletagC.style.cssText = 'margin-left: 25%;';
+    titletagC.appendChild(document.createTextNode(this.type + ": "))
+    tag.appendChild(titletagC)
+
+    var titletagR = document.createElement("p")
+    titletagR.style.cssText = 'margin-top: 1%; margin-left: 25%;';
+    // titletagR.appendChild(document.createTextNode(this.yea))
+    tag.appendChild(titletagR)
+
+    tag.style.cssText = 'margin-left: 25% width: 50%;';
+    var ul = document.createElement("ul");
+    this.display_res_task(ul, 'li');
+    ul.style.cssText = 'font-size: large; margin-left: 25%; margin-right: 25%;';
+    tag.appendChild(ul);
+
+    tag.setAttribute("name", "Skills");
+
+    var element = document.getElementById("Res");
+    element.appendChild(tag);
+  }
+
+
+
 }
 
-// la clase Language hereda los atributos de Skills. Ya que Language es un tipo de Skill
 class Language extends Skills{
     constructor(type){
       super(type);
@@ -311,8 +502,7 @@ class Language extends Skills{
 }
 
 
-// La clase de WorkExperience tiene como variables al nombre de la compañîa/institución, el año del trabajo y el rol. Junto a estas hay un arreglo de
-// eventos/responsabilidades que se llevaron a cabo. companía, rol y año se pasa por el constructor, y la función add_task agrega los eventos
+
 class WorkExperience{
     company;
     year;
@@ -325,9 +515,9 @@ class WorkExperience{
         this.role = role;
     }
 
-    add_task(task){this.tasks.push(task);} // se agrega evento al arreglo
+    add_task(task){this.tasks.push(task);}
 
-    display_task(tag, type){ // se escribe un formato lista con cada task.
+    display_task(tag, type){
       for (let i = 0; i < this.tasks.length; i++) {
           var item = document.createElement(type);
           item.appendChild(document.createTextNode(this.tasks[i]))
@@ -357,10 +547,26 @@ class WorkExperience{
       element.appendChild(tag);
     }
 
+    to_Res(){ // se crea el header, date, y objetivos
+      var tag = document.createElement("p");
+
+      var titletagC = document.createElement("h4")
+      titletagC.style.cssText = 'margin-left: 25%;';
+      titletagC.appendChild(document.createTextNode(this.year + " | " + this.role + " @ " + this.company ))
+      tag.appendChild(titletagC)
+
+      tag.style.cssText = 'margin-left: 25% width: 50%;';
+      var ul = document.createElement("ul");
+      this.display_task(ul, 'li');
+      ul.style.cssText = 'font-size: large; margin-left: 25%; margin-right: 25%;';
+      tag.appendChild(ul)
+
+      var element = document.getElementById("Res");
+      element.appendChild(tag);
+    }
+
 }
 
-// La clase de Projects es bien parecida a la de WorkExperience. tiene como variables el año del trabajo y el titulo del trabajo. Junto a estas hay un arreglo de
-// eventos/responsabilidades que se llevaron a cabo. año y titulo se pasa por el constructor, y la función add_task agrega los eventos
 class Projects{
   year;
   title;
@@ -370,10 +576,10 @@ class Projects{
     this.title = title;
   }
 
-  add_task(task){this.tasks.push(task);} // se agrega evento al arreglo
+  add_task(task){this.tasks.push(task);}
 
   display_task(tag, type){
-    for (let i = 0; i < this.tasks.length; i++) { // se escribe un formato lista con cada task.
+    for (let i = 0; i < this.tasks.length; i++) {
         var item = document.createElement(type);
         item.appendChild(document.createTextNode(this.tasks[i]))
         tag.appendChild(item)
@@ -401,6 +607,27 @@ class Projects{
     tag.setAttribute("name","Projects")
 
     var element = document.getElementById("CV");
+    element.appendChild(tag);
+  }
+
+
+  to_Res(){
+    var tag = document.createElement("p");
+
+    var titletagC = document.createElement("h4")
+    titletagC.style.cssText = 'margin-left: 25%;';
+    titletagC.appendChild(document.createTextNode(this.year + " | " + this.title ))
+    tag.appendChild(titletagC)
+
+    tag.style.cssText = 'margin-left: 25% width: 50%;';
+    var ul = document.createElement("ul");
+    this.display_task(ul, 'li');
+    ul.style.cssText = 'font-size: large; margin-left: 25%; margin-right: 25%;';
+    tag.appendChild(ul)
+
+    tag.setAttribute("name","Projects")
+
+    var element = document.getElementById("Res");
     element.appendChild(tag);
   }
 
@@ -441,92 +668,75 @@ class CurVi{
 // como mencionado previamente, el constructor del CV es la data que vaya a recoger y demostrar. 
     constructor(data){this.data = data;}
 
-
-// ahora viene la porcion de funciones miembros que se encarga de almacenar la data dada. los formatos se explican en el readme file. 
-// casi todas las proximas funciones incorporan setHeader y luego proceden a almacenar informacion en los componentes de dict_values.
-
-// title crea el objeto Name con el nombre dado. y luego alamcena en dict_headers su valor
     title(data){
-      let cv = new Name(data[1]);
+      let cv = new CV(data[1]);
       this.dict_headers[data[0]] = cv;
     }
 
-// contact crea el objeto Contact con el email y numero dado. y luego alamcena en dict_headers su valor
     contact(data){
       let contact = new Contact(data[1], data[2]);
       this.dict_headers[data[0]] = contact;
     }
 
-// summary primero verifica si ya existe dicho objeto que representa su header. Crea el objeto ProfTitle con titulo y objetivo dado. y luego alamcena en dicho objeto 
-// almacena los intereses y con su llave inicial en el primer espacio (vea formato) y accede a dict_vals guarda los cambios en el arreglo que corresponde
-// al objeto.
     summary(data){
       this.setHeader(data);
       let summ = new ProfTitle(data[1], data[2]);
-      for (var i = 3; i < data.length; i++) {
+      for (var i = 3; i < data.length-1; i++) {
           summ.add_interest(data[i]);
       }
       this.dict_vals[data[0]].push(summ);
     }
 
-// project primero verifica si ya existe dicho objeto que representa su header. Crea el objeto Projects con titulo y año dado. y luego alamcena en dicho objeto 
-// almacena los tasks y con su llave inicial en el primer espacio (vea formato) y accede a dict_vals guarda los cambios en el arreglo que corresponde
-// al objeto.
     project(data){
       this.setHeader(data);
       let proj = new Projects(data[1], data[2]);
-      for (var i = 3; i < data.length; i++) {
+      for (var i = 3; i < data.length-1; i++) {
           proj.add_task(data[i]);
       }
       this.dict_vals[data[0]].push(proj);
     }
 
-// courses primero verifica si ya existe dicho objeto que representa su header. Crea el objeto Courses con el codigo y nombre dado. y luego almacena
-// con su llave inicial en el primer espacio (vea formato) accede a dict_vals y guarda los cambios en el arreglo que corresponde al objeto.
     courses(data){
       this.setHeader(data);
       let co = new Courses();
-      co.add_course(data[1], data[2]);
+      if (data[3] == 1){
+        co.add_res_course(data[1], data[2]);
+      }
+      co.add_course(data[1], data[2]); 
       this.dict_vals[data[0]].push(co);
     }
-
-// skills primero verifica si ya existe dicho objeto que representa su header. Crea el objeto Skills con el tipo dado. Procede a guardar en su arreglo
-// de skills los ingresados en .csv y luego almacena con su llave inicial en el primer espacio (vea formato) accede a dict_vals y guarda los cambios en el arreglo que corresponde al objeto.
+    //
     skills(data){
       this.setHeader(data);
       let skobj = new Skills(data[1]);
-      for (var i = 2; i < data.length; i++) {
+      if (data[data.length-1] == 1 || data[data.length-1] == 0){
+        for (var i = 2; i < data.length-1; i++) {
+          skobj.add_res_task(data[i]);
           skobj.add_task(data[i]);
+        }
       }
       this.dict_vals[data[0]].push(skobj);
     }
-
-// recog primero verifica si ya existe dicho objeto que representa su header. Crea el objeto Recognition con el año y nombre dado. Procede a guardar en su arreglo
-// de skills los ingresados en .csv y luego almacena con su llave inicial en el primer espacio (vea formato) accede a dict_vals y guarda los cambios en el arreglo que corresponde al objeto.
+    //
     recog(data){
       this.setHeader(data);
       let rec = new Recognition();
+      if (data[3] == 1){
+        rec.add_res_task(data[2], data[1]);
+      }
       rec.add_task(data[2], data[1]);
       this.dict_vals[data[0]].push(rec);
     }
-	
-// workex primero verifica si ya existe dicho objeto que representa su header. Crea el objeto WorkExperience con la compañïa, titulo del rol y año dado. y luego alamcena en dicho objeto 
-// almacena los tasks y con su llave inicial en el primer espacio (vea formato), accede a dict_vals guarda los cambios en el arreglo que corresponde
-// al objeto.
-	
+    //
     workex(data){
       this.setHeader(data);
       let obj = new WorkExperience(data[1], data[2], data[3]);
-      for (var i = 4; i < data.length; i++) {
+      for (var i = 4; i < data.length-1; i++) {
           obj.add_task(data[i]);
       }
       this.dict_vals[data[0]].push(obj);
     }
-
-
-// education primero verifica si ya existe dicho objeto que representa su header. Crea el objeto Education con el name, grad_year, city, state, degree_type (MS, BS, PhD), GPA
-// concentration (CS, Math, English, etc.) dado. y luego alamacena en dicho objeto y con su llave inicial en el primer espacio (vea formato), accede a dict_vals guarda los cambios en el arreglo que corresponde
-// al objeto.
+    //
     education(data){
       this.setHeader(data);
       let objEd = new Education(data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
@@ -582,16 +792,24 @@ class CurVi{
       cvDiv.setAttribute("id", "generatePDF")
       cvDiv.style.cssText = 'margin-top: 15px; display: block';
       cvDiv.innerHTML = "Download CV!";
+      //
+      // let resDiv = document.createElement("button");
+      // resDiv.setAttribute("class", "btn btn-danger btn-md center-block");
+      // resDiv.style.cssText = 'margin-top: 15px; display: block';
+      // resDiv.innerHTML = "See Resume!";
+
 
       let newDiv = document.createElement("div");
       newDiv.setAttribute("id", "CV");
+      // let newResDiv = document.createElement("div");
+      // newResDiv.setAttribute("id", "Res");
       document.body.appendChild(cvDiv);
-   //   document.body.appendChild(resDiv);
+      //document.body.appendChild(resDiv);
       document.body.appendChild(newDiv);
 
-// el siguiente loop corre por los titulares del diccionario. Si ve que existe un objeto, lo despliega (el titular). Luego usa esa misma llave
-// para recorrer el arreglo de objetos (vals), para cada uno, tambien lo despliega en la pantalla. Finalmente ofrece el evento del boton
-// establecido para descargar el PDF. 
+// el siguiente loop corre por los titulares del diccionario. Si ve que existe un objeto, lo despliega. Luego usa esa misma llave
+// para recorrer el arreglo de objetos, para cada uno, tambien lo despliega en la pantalla. Finalmente ofrece el evento del boton
+// establecido para descargar el PDF.
       for (var key in this.dict_headers) {
           var objHeader = this.dict_headers[key];
           if (objHeader == 1){
@@ -606,7 +824,40 @@ class CurVi{
           }
       }
        cvDiv.addEventListener("click", generatePDF);
+       //resDiv.addEventListener("click", switchPage);
     }
+
+     displayRes(){
+      var line = document.createElement("hr")
+      line.style.cssText = "height: 2px; background-color: #000000; border: none; width:100%;";
+      let resDiv = document.createElement("button");
+      resDiv.setAttribute("class", "btn btn-danger btn-md center-block");
+      resDiv.style.cssText = 'margin-top: 15px; display: block';
+      resDiv.innerHTML = "Download Resume!";
+
+      let newDiv = document.createElement("div");
+      newDiv.setAttribute("id", "Res");
+      document.body.appendChild(line);
+      document.body.appendChild(resDiv);
+      document.body.appendChild(newDiv);
+      for (var key in this.dict_headers) {
+        var objHeader = this.dict_headers[key];
+        if (objHeader == 1){
+          continue;
+        }
+        else{
+            objHeader.to_Res();
+            for (var i = 0; i < this.dict_vals[key].length; i++) {
+                var objCont = this.dict_vals[key][i];
+                objCont.to_Res();
+            }
+        }
+     }
+
+
+    resDiv.addEventListener("click", generateRes);
+     }
+
 }
 
 // esta funcion usa el framework de HMTL2PDF para generar el mismo
@@ -615,8 +866,13 @@ function generatePDF() {
     html2pdf(element);
 }
 
+function generateRes() {
+  var element = document.getElementById('Res');
+  html2pdf(element);
+}
+
 // Esta funcion es la que es llamada por la funcion getData() del archivo .php, recibe el arreglo 2D, y primero le limpia las doble comillas innecesarias.
-// Al acabar con la limepieza, crea el objeto CV y le da la señal para add y display.
+// Al acabar con la limepieza, crea el objeto CV y le da la senal para add y display.
 function createCV(data){
     for (let i = 0; i < data.length; i++){
       for (var j = 0; j < data[i].length; j++) {
@@ -624,7 +880,17 @@ function createCV(data){
       }
     }
 
+      // let el = document.getElementById('Res');
+      // el.innerHTML = 'r';
+
       cv = new CurVi(data);
       cv.addCV();
       cv.displayCV();
+      cv.displayRes();
+     // if (el){ cv.displayRes(); }
 }
+
+function switchPage(){
+    location.href = "resume.html";
+}
+
